@@ -1,15 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import yekanBakh from "@/utils/fonts";
+
 import "./globals.css";
+import Header from "@/layout/Header";
+import Footer from "@/layout/Footer";
+import NextAuthProvider from "@/providers/NextAuthProvider";
+import Layout from "@/layout/Layout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -18,9 +15,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="fa" dir="rtl">
+      <body className={yekanBakh.className}>
+       <NextAuthProvider>
+      <Layout>
+      {children}
+      </Layout>
+       </NextAuthProvider> 
       </body>
     </html>
   );

@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+}
+.estate {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    //height: 500px;
+    background-color: rgb(233, 245, 244);
+    width: 100%;
+    padding: 15px 0 5px 0;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.phoneNumber {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    span:first-child {
+        margin-top: 3px;
+    }
+}
+
+.sharing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px;
+    background-color: rgb(233, 245, 244);
+    width: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+    span {
+        margin-top: 3px;
+    }
+
+    span:first-child {
+        margin-top: 7px;
+    }
+}
+
+.specifications {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(233, 245, 244);
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.category {
+    display: flex;
+    gap: 5px;
+    span:first-child {
+        // margin-top: px;
+    }
+}

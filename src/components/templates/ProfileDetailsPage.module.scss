@@ -1,0 +1,14 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    gap: 3%;
+    .main {
+        background-color: gray;
+        width: 80%;
+    }
+
+    .aside {
+        // background-color: goldenrod;
+        width: 17%;
+    }
+}
