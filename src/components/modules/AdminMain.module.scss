@@ -1,0 +1,59 @@
+@use '../../styles' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    h3 {
+        @include textStyle($darkBlue, 1.2rem, 500);
+    }
+
+    .charactristics {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+
+        span {
+            background-color: $blue;
+            color: $darkBlue;
+            padding: 4px 8px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+        }
+
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 6px 0;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 60px;
+        color: #fafafa;
+        background-color: #4CAF50;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+
+    .line {
+        height: 2px;
+        background-color: $blue;
+        display: block;
+    }
+     
+}

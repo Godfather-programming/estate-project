@@ -1,0 +1,79 @@
+@use '../../styles' as *;
+
+.container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.name {
+    p {
+        color: $darkBlue;
+    }
+    .place {
+        margin-top: 10px;
+        display: flex;
+         
+        span:first-child {
+            // margin-bottom: 100px;
+        }
+        span:last-child {
+            margin-right: 2px;
+        }
+    }
+}
+
+.explanations {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+ 
+    p:first-child {
+        color: $darkBlue;
+    }
+}
+
+.line {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: gray;
+}
+
+.amenities {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    p {
+        color: $darkBlue;
+    }
+
+
+    li {
+        margin-right: 15px;
+        padding-right: 0;
+        text-wrap: wrap;
+        // display: flex;
+        // list-style: circle;
+    }
+
+    li::marker {
+        color: $darkBlue;
+        // position: absolute;
+        // right: 515px;
+        // display: flex;
+        // align-items: center;
+    }
+}
+
+@include laptop {
+    .container {
+        align-items: center;
+        // justify-content: center;
+        text-align: center;
+    }
+
+
+}

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { RxExit } from "react-icons/rx";
 
@@ -10,15 +10,30 @@ import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-function DashbordAside() {
-  // const session = await getServerSession(authOptions);
-  // const { email } = session.user;
-  const session = useSession()
-  const email = session?.data?.user?.email
+function DashbordAside({ email }) {
+  const [admin, setAdmin] = useState(null);
+
+  const fetchClient = async () => {
+    const res = await fetch("/api/clientss", {
+      method: "POST",
+      body: JSON.stringify(email),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    console.log(data);
+    setAdmin(data.valid);
+  };
+
+  useEffect(() => {
+    fetchClient();
+  }, []);
+
+  // if (admin)
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <IoPersonCircleOutline size={40} color="#0500ff" />
+        {admin ? <p> Admin </p> : null}
         <span className={styles.email}> {email} </span>
         <span className={styles.line}> </span>
       </div>
@@ -37,6 +52,12 @@ function DashbordAside() {
             {" "}
             <li> ثبت آگهی </li>{" "}
           </Link>
+          {admin ? (
+            <Link href="/admin">
+              {" "}
+              <li> در انتظار تایید </li>{" "}
+            </Link>
+          ) : null}
         </ul>
       </div>
 

@@ -1,19 +1,28 @@
+// "use client";
+
 import React from "react";
 
-import styles from "@/templates/DashbordPage.module.scss";
+import styles from "@/templates/AdminPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
-import DashbordMain from "@/modules/DashbordMain";
+import AdminMain from "@/modules/AdminMain";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
-import Client from "@/models/Client";
 
-async function DashbordPage() {
+async function AdminPage() {
   const session = await getServerSession(authOptions);
   console.log(session);
   const { email } = session.user;
-  const client = await Client.findOne({ email });
-  const date = client.createdAt;
-  // use dashbord things here for don't doing the props drilling
+//   console.log(email)
+  // const [data, setData] = useState(null)
+  // const fetchData = async () => {
+  //     const res = await fetch("/api/profile")
+  //     const inforamtion = await res.json()
+  //     setData(inforamtion.profiles)
+  // }
+
+  // useEffect(() => {
+  //     fetchData()
+  // }, [])
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
@@ -21,10 +30,10 @@ async function DashbordPage() {
       </div>
 
       <div className={styles.main}>
-        <DashbordMain date={date} />
+        <AdminMain />
       </div>
     </div>
   );
 }
 
-export default DashbordPage;
+export default AdminPage;

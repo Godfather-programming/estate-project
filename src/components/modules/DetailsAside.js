@@ -8,10 +8,12 @@ import { MdOutlineApartment } from "react-icons/md";
 import { BsFillHouseHeartFill } from "react-icons/bs";
 import { FaStore } from "react-icons/fa";
 import { PiOfficeChairFill } from "react-icons/pi";
+import { FaCalendarCheck } from "react-icons/fa6";
 
 function DetailsAside({ data, setData }) {
   console.log(data);
-  const { firm, phoneNumber, category, article, price } = data;
+  const { firm, phoneNumber, category, article, price, constructionDate } =
+    data;
   // console.log(category)
   return (
     <div className={styles.container}>
@@ -58,7 +60,11 @@ function DetailsAside({ data, setData }) {
           </span>{" "}
           <span> {article} </span>
         </div>
-        <p> {price} </p>
+        <p> {price} تومان </p>
+        <div className={styles.Date}>
+          <span> <FaCalendarCheck size={18} color="#0500ff"/> </span>
+          <span> {constructionDate} </span>
+        </div>
       </div>
     </div>
   );

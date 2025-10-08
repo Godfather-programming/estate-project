@@ -81,18 +81,18 @@ function MyAdvPart({ data, setData }) {
             </div>
 
             <div className={styles.buttons}>
-                <button className={styles.edit}>
               <Link href={`/dashbord/my-adv/edit/${item._id}`}>
-                  {" "}
-                  ویرایش <FiEdit size={18} />{" "}
-              </Link>
+                <button className={styles.edit}>
+                  <span> ویرایش </span>
+                  <span> <FiEdit size={18} /> </span> 
                 </button>
+              </Link>
               <button
                 className={styles.delete}
                 onClick={(e) => deleteHandler(e, item)}
               >
-                {" "}
-                حذف آگهی <AiOutlineDelete size={18} />{" "}
+                <span> حذف آگهی </span>
+                <span> <AiOutlineDelete size={18} /> </span>
               </button>
               {/* <DeleteButton item={item} deleteHandler={deleteHandler}/> */}
             </div>

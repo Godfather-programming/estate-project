@@ -25,7 +25,7 @@ function ProfileDetailsPage() {
   console.log(data)
   return <div className={styles.container}>
     <div className={styles.main}>
-      <DetailsMain /> 
+      <DetailsMain data={data} setData={setData}/> 
     </div>
 
     <div className={styles.aside}>

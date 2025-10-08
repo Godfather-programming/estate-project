@@ -1,6 +1,7 @@
 "use client";
 
 import ProfileEditPage from "@/templates/ProfileEditPage";
+import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -21,9 +22,12 @@ function Edit() {
     };
     fetchData();
   }, []);
-    console.log(data);
+  console.log(data);
 
-  if (data) return <ProfileEditPage data={data} profileId={profileId}/>;
+  const session = useSession();
+  const email = session?.data?.user?.email;
+  if (data && email)
+    return <ProfileEditPage data={data} profileId={profileId} email={email} />;
 }
 
 export default Edit;

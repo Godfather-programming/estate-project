@@ -39,8 +39,8 @@ const profileSchema = new Schema({
         type: Date,
         date: () => Date.now(),
         immutable: true
-    }
-    
+    },
+    // publishing: false
 })
 
 const Profile = models?.Profile || model("Profile", profileSchema)

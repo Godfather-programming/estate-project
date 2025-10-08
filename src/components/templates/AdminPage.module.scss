@@ -1,0 +1,12 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    gap: 3%;
+    .aside {
+        width: 17%;
+    }
+
+    .main {
+        width: 80%;
+    }
+}

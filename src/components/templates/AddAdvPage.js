@@ -12,7 +12,8 @@ import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
 import toast from "react-hot-toast";
 
-function AddAdvPage() {
+function AddAdvPage({ email }) {
+  console.log(email)
   const date = new Date();
   const time = Intl.DateTimeFormat("fa").format(date);
   const [data, setData] = useState({
@@ -66,7 +67,7 @@ function AddAdvPage() {
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
-        <DashbordAside />
+        <DashbordAside email={email}/>
       </div>
 
       <div className={styles.main}>

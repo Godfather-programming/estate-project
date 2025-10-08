@@ -7,7 +7,7 @@ import BuyResidentialAside from "@/modules/BuyResidentialAside";
 import BuyResidnetialMain from "@/modules/BuyResidentialMain";
 
 function BuyResidentialPage() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const fetchData = async () => {
     const res = await fetch("/api/profile");
     const information = await res.json();
@@ -18,7 +18,7 @@ function BuyResidentialPage() {
     fetchData();
   }, []);
   
-  // console.log(data);
+  console.log({primeData: data});
   if (data)
     return (
       <div className={styles.container}>

@@ -7,26 +7,19 @@ import { LuTypeOutline } from "react-icons/lu";
 
 
 function BuyResidentialAside({data, setData}) {
-  const [inforamtion, setInformation] = useState(data)
-  // setInformation(data)
-  // console.log(inforamtion)
+  const [information, setInformation] = useState(data)
   const categoryHandler = (e) => {
-    // setData(inforamtion)
-    setInformation(data)
     const {tagName, innerText} = e.target
+    console.log({tagName, innerText})
     if(tagName !== "LI") return
-    if(inforamtion) {
-
-      if(innerText === "همه") {
-        setData(inforamtion)
-        
-      } else {
-        const newData = inforamtion.filter(item => item.category === innerText)
-        console.log(newData)
-        setData(newData)
-        
-      }
+  
+    if(innerText === "همه") {
+      setData(information)
+    } else {
+      const newData = information.filter(item => item.category === innerText)
+      setData(newData)
     }
+
   }
   return (
     <div className={styles.container}>
@@ -52,3 +45,21 @@ function BuyResidentialAside({data, setData}) {
 }
 
 export default BuyResidentialAside;
+
+// const [inforamtion, setInformation] = useState(data)
+// console.log({data})
+// console.log({inforamtion})
+// const categoryHandler = (e) => {
+//   setData(inforamtion)
+//   const {tagName, innerText} = e.target
+//   if(tagName !== "LI") return
+
+//     if(innerText === "همه") {
+//       setData(inforamtion)
+      
+//     } else {
+//       const newData = inforamtion.filter(item => item.category === innerText)
+//       console.log({newData})
+//       setData(newData)
+//     }
+//   }

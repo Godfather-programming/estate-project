@@ -10,8 +10,9 @@ import Rules from "@/modules/AddAdvPart/Rules";
 import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
 import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 
-function ProfileEditPage({ data, profileId }) {
+function ProfileEditPage({ data, profileId, email }) {
   console.log(data);
   const [information, setInformation] = useState({
     article: data.article,
@@ -59,12 +60,16 @@ function ProfileEditPage({ data, profileId }) {
     });
     const data = await res.json();
     console.log(data);
+    if(res.status === 200) {
+      return toast.success(data.message)
+    }
+    
   };
   if (data)
     return (
       <div className={styles.container}>
         <div className={styles.aside}>
-          <DashbordAside />
+          <DashbordAside email={email}/>
         </div>
 
         <div className={styles.main}>

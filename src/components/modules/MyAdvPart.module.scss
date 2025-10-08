@@ -91,10 +91,22 @@
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
         font-size: 1rem;
+        height: 40px;
+
+    }
+    
+    a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+
+        span:last-child {
+            margin-top: 7px;
+        }
     }
 
     .edit {
-        // #64DD17
         border: 2px solid #00C853;
         color: #00C853;
     }
@@ -102,6 +114,10 @@
     .delete {
         border: 2px solid #E53935;
         color: #E53935;
+
+        span:last-child {
+            margin-top: 8px;
+        }
     }
 }
 
