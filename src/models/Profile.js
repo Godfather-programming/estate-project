@@ -14,7 +14,7 @@ const profileSchema = new Schema({
         required: true
     }, 
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     price: {
@@ -35,12 +35,15 @@ const profileSchema = new Schema({
     },
     amenities: [{text: String}],
     rules: [{sentence: String}],
+    published: {
+        type: String,
+        required: true,
+    },
     createdAt: {
         type: Date,
         date: () => Date.now(),
         immutable: true
     },
-    // publishing: false
 })
 
 const Profile = models?.Profile || model("Profile", profileSchema)

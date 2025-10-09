@@ -11,6 +11,7 @@ import Rules from "@/modules/AddAdvPart/Rules";
 import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
 import toast from "react-hot-toast";
+import { e2p } from "@/utils/replaceNumber";
 
 function AddAdvPage({ email }) {
   console.log(email)
@@ -27,6 +28,7 @@ function AddAdvPage({ email }) {
     constructionDate: time,
     amenities: [],
     rules: [],
+    published: "false"
   });
 
   const changeHandler = (e) => {
@@ -47,18 +49,19 @@ function AddAdvPage({ email }) {
 
     if (res.status === 200) {
       toast.success(inforamtion.message);
-      setData({
-        article: "",
-        explanations: "",
-        address: "",
-        phoneNumber: "",
-        price: "",
-        firm: "",
-        category: "",
-        constructionDate: time,
-        amenities: [],
-        rules: [],
-      });
+      // setData({
+      //   article: "",
+      //   explanations: "",
+      //   address: "",
+      //   phoneNumber: "",
+      //   price: "",
+      //   firm: "",
+      //   category: "",
+      //   constructionDate: time,
+      //   amenities: [],
+      //   rules: [],
+      //   isPublished: "false"
+      // });
     } else {
       toast.error(inforamtion.error);
     }

@@ -13,10 +13,11 @@ import { sp } from "@/utils/replaceNumber";
 import Link from "next/link";
 
 function BuyResidnetialMain({ data, setData }) {
-  // console.log(data);
+  const information = data.filter(item => item.published === "true")
+  console.log({information});
   return (
     <div className={styles.container}>
-      {data.map((item) => (
+      {information.map((item) => (
         <div className={styles.wrapper} key={item._id}>
           <span className={styles.icon}>
             {item.category === "ویلا" ? <BsFillHouseHeartFill /> : null}

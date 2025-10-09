@@ -1,6 +1,7 @@
+
 import Profile from "@/models/Profile";
 import connectDB from "@/utils/connectDB";
-import { sp } from "@/utils/replaceNumber";
+import { e2p, sp } from "@/utils/replaceNumber";
 import { validationSession } from "@/utils/session";
 import { NextResponse } from "next/server";
 
@@ -30,9 +31,12 @@ export async function POST(req) {
       constructionDate,
       amenities,
       rules,
+      published
     } = data;
 
-    console.log(article);
+    console.log(phoneNumber);
+    console.log(phoneNumber);
+    console.log(price)
 
     if (
       !article ||
@@ -50,7 +54,12 @@ export async function POST(req) {
       );
     }
 
-    const recordedProfile = await Profile.create({...data, price: sp(data.price)});
+    const recordedProfile = await Profile.create({
+      ...data,
+      price: sp(data.price),
+      phoneNumber: e2p(data.phoneNumber)
+    })
+
     console.log(recordedProfile);
 
     return NextResponse.json(
