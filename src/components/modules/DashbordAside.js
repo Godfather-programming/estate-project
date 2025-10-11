@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { RxExit } from "react-icons/rx";
 
@@ -8,9 +8,9 @@ import styles from "@/modules/DashbordAside.module.scss";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
-function DashbordAside({ email }) {
+function DashbordAside({ email, children }) {
   const [admin, setAdmin] = useState(null);
 
   const fetchClient = async () => {
@@ -37,7 +37,7 @@ function DashbordAside({ email }) {
         <span className={styles.email}> {email} </span>
         <span className={styles.line}> </span>
       </div>
-
+    
       <div className={styles.options}>
         <ul>
           <Link href="/dashbord">
@@ -60,8 +60,8 @@ function DashbordAside({ email }) {
           ) : null}
         </ul>
       </div>
-
-      <div className={styles.exit}>
+    
+      <div className={styles.exit} onClick={signOut}>
         <RxExit size="25px" />
         <span> خروج </span>
       </div>
@@ -70,3 +70,4 @@ function DashbordAside({ email }) {
 }
 
 export default DashbordAside;
+

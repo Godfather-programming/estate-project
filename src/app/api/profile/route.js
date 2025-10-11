@@ -31,12 +31,12 @@ export async function POST(req) {
       constructionDate,
       amenities,
       rules,
-      published
+      published,
+      email
     } = data;
 
-    console.log(phoneNumber);
-    console.log(phoneNumber);
-    console.log(price)
+    console.log(email);
+    console.log(email);
 
     if (
       !article ||
@@ -54,13 +54,20 @@ export async function POST(req) {
       );
     }
 
-    const recordedProfile = await Profile.create({
-      ...data,
-      price: sp(data.price),
-      phoneNumber: e2p(data.phoneNumber)
-    })
+    // const email1 = data.email
+    // const recordedProfile = await Profile.create({
+    //   ...data,
+    //   price: sp(data.price),
+    //   phoneNumber: e2p(data.phoneNumber)
+    // })
 
-    console.log(recordedProfile);
+       const recordedProfile = await Profile.create({
+        ...data,
+        price: sp(data.price),
+        phoneNumber: e2p(data.phoneNumber),
+       })
+
+    console.log(recordedProfile.email);
 
     return NextResponse.json(
       { message: "آگهی با موفقیت ثبت شد!" },

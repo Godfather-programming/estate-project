@@ -6,13 +6,18 @@ import DashbordMain from "@/modules/DashbordMain";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Client from "@/models/Client";
+import { redirect } from "next/navigation";
 
 async function DashbordPage() {
+  
   const session = await getServerSession(authOptions);
   console.log(session);
-  const { email } = session.user;
+  if(!session) {
+    redirect("/signin")
+  }
+  const email  = session?.user.email;
   const client = await Client.findOne({ email });
-  const date = client.createdAt;
+  const date = client?.createdAt;
   // use dashbord things here for don't doing the props drilling
   return (
     <div className={styles.container}>

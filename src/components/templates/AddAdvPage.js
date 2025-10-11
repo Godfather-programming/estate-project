@@ -28,7 +28,8 @@ function AddAdvPage({ email }) {
     constructionDate: time,
     amenities: [],
     rules: [],
-    published: "false"
+    published: "false",
+    email: email
   });
 
   const changeHandler = (e) => {
@@ -60,7 +61,8 @@ function AddAdvPage({ email }) {
       //   constructionDate: time,
       //   amenities: [],
       //   rules: [],
-      //   isPublished: "false"
+      //   published: "false",
+      //   email
       // });
     } else {
       toast.error(inforamtion.error);

@@ -17,7 +17,9 @@ import connectDB from "@/utils/connectDB";
 import Link from "next/link";
 
 function MyAdvPart({ data, setData }) {
-  const router = useRouter();
+  // const router = useRouter();
+  // console.log({empty})
+  console.log({data})
   // const [data, setData] = useState([]);
   // const [type, setType] = useState(true)
   // const fetchData = async () => {
@@ -98,12 +100,14 @@ function MyAdvPart({ data, setData }) {
             </div>
           </div>
         ))
-      ) : (
+      ) : null}
+
+      <Toaster />
+      {!data.length ? (
         <div className={styles.none}>
           <p> هیچ آگهی ثبت نکرده اید </p>
         </div>
-      )}
-      <Toaster />
+      ) : null}
     </div>
   );
 }

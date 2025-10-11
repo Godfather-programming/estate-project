@@ -1,4 +1,4 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose"
 
 const profileSchema = new Schema({
     article: {
@@ -36,6 +36,10 @@ const profileSchema = new Schema({
     amenities: [{text: String}],
     rules: [{sentence: String}],
     published: {
+        type: String,
+        required: true,
+    },
+    email: {
         type: String,
         required: true,
     },

@@ -2,10 +2,11 @@
 
 import ProfileEditPage from "@/templates/ProfileEditPage";
 import { useSession } from "next-auth/react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function Edit() {
+  const router = useRouter()
   const [data, setData] = useState(null);
   const { profileId } = useParams();
   console.log(profileId);
@@ -26,6 +27,7 @@ function Edit() {
 
   const session = useSession();
   const email = session?.data?.user?.email;
+  if(!session) router.push("/signin")
   if (data && email)
     return <ProfileEditPage data={data} profileId={profileId} email={email} />;
 }
