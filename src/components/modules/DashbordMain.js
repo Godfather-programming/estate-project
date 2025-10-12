@@ -3,7 +3,7 @@ import React from "react";
 import styles from "@/modules/DashbordMain.module.scss";
 
 function DashbordMain({ date }) {
-  // console.log(date)
+  console.log(date);
   const time = Intl.DateTimeFormat("fa").format(date);
   // console.log(time)
   return (
@@ -14,7 +14,7 @@ function DashbordMain({ date }) {
 
       <div className={styles.date}>
         <span> تاریخ عضویت: </span>
-        <span className={styles.history}> {time} </span>
+        <span className={styles.history}>{time}</span>
       </div>
     </div>
   );
