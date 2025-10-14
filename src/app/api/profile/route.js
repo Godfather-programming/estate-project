@@ -1,8 +1,10 @@
 
 import Profile from "@/models/Profile";
+import { authOptions } from "@/utils/authOptions";
 import connectDB from "@/utils/connectDB";
 import { e2p, sp } from "@/utils/replaceNumber";
 import { validationSession } from "@/utils/session";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -10,9 +12,13 @@ export async function POST(req) {
   // if (!session) {
   //   return NextResponse.json(
   //     { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
-  //     { status: 404 }
+  //     { status: 401 }
   //   );
   // }
+  const session = await getServerSession(req)
+  const session1 = await getServerSession(authOptions)
+  console.log({reqSession: session})
+  console.log({authSession: session1})
   try {
     validationSession();
 
@@ -50,7 +56,7 @@ export async function POST(req) {
     ) {
       return NextResponse.json(
         { error: "لطفا اطلاعات را به طور کامل وارد کنید!" },
-        { status: 422 }
+        { status: 400 }
       );
     }
 

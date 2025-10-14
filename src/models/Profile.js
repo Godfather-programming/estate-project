@@ -18,7 +18,7 @@ const profileSchema = new Schema({
         required: true
     },
     price: {
-        type: String,
+        type: String, // must be Number
         required: true
     },
     firm: {
@@ -33,8 +33,16 @@ const profileSchema = new Schema({
         type: String,
         required: true,
     },
-    amenities: [{text: String}],
-    rules: [{sentence: String}],
+    // amenities: [{text: String}],
+    amenities: {
+        type: [{text: String}],
+        default: []
+    },
+    // rules: [{sentence: String}],
+    rules: {
+        type: [{sentence: String}],
+        default: [] 
+    },
     published: {
         type: String,
         required: true,
@@ -48,6 +56,11 @@ const profileSchema = new Schema({
         date: () => Date.now(),
         immutable: true
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "Client"
+    },  
+        
 })
 
 const Profile = models?.Profile || model("Profile", profileSchema)

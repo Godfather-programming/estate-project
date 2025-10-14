@@ -50,20 +50,20 @@ function AddAdvPage({ email }) {
 
     if (res.status === 200) {
       toast.success(inforamtion.message);
-      // setData({
-      //   article: "",
-      //   explanations: "",
-      //   address: "",
-      //   phoneNumber: "",
-      //   price: "",
-      //   firm: "",
-      //   category: "",
-      //   constructionDate: time,
-      //   amenities: [],
-      //   rules: [],
-      //   published: "false",
-      //   email
-      // });
+      setData({
+        article: "",
+        explanations: "",
+        address: "",
+        phoneNumber: "",
+        price: "",
+        firm: "",
+        category: "",
+        constructionDate: time,
+        amenities: [],
+        rules: [],
+        published: "false",
+        email
+      });
     } else {
       toast.error(inforamtion.error);
     }

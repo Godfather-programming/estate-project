@@ -26,6 +26,7 @@ function Dates({ data, setData }) {
         placeholder={data.constructionDate}
         value={data.constructionDate}
         onChange={dateHandler}
+        calendarPosition="bottom-right"
         style={dateStyle}
       />
     </div>
