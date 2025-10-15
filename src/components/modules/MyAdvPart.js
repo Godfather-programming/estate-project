@@ -7,6 +7,9 @@ import Profile from "@/models/Profile";
 import { MdOutlineApartment } from "react-icons/md";
 import { FiArrowLeftCircle } from "react-icons/fi";
 import { MdOutlinePlace } from "react-icons/md";
+import { BsFillHouseHeartFill } from "react-icons/bs";
+import { FaStore } from "react-icons/fa";
+import { PiOfficeChairFill } from "react-icons/pi";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { e2p, sp } from "@/utils/replaceNumber";
@@ -20,6 +23,7 @@ function MyAdvPart({ data, setData }) {
   // const router = useRouter();
   // console.log({empty})
   console.log({data})
+  console.log(data.category)
   // const [data, setData] = useState([]);
   // const [type, setType] = useState(true)
   // const fetchData = async () => {
@@ -48,6 +52,13 @@ function MyAdvPart({ data, setData }) {
       toast.error(information.error.toString());
     }
   };
+
+  const icons = {
+    ویلا: <BsFillHouseHeartFill size={20} color="#0500ff"/>,
+    آپارتمان: <MdOutlineApartment size={20} color="#0500ff"/>,
+    مغازه: <FaStore size={20} color="#0500ff"/>,
+    دفتر: <PiOfficeChairFill size={20} color="#0500ff"/>,
+  }
   return (
     <div className={styles.container}>
       {data ? (
@@ -57,8 +68,9 @@ function MyAdvPart({ data, setData }) {
               <div className={styles.type}>
                 {" "}
                 <span className={styles.icon}>
-                  {" "}
-                  <MdOutlineApartment size={20} color="#0500ff" />{" "}
+                  {/* {" "}
+                  <MdOutlineApartment  />{" "} */}
+                {icons[item.category]}
                 </span>{" "}
                 <Link href={`/buy-residential/details/${item._id}`}>
                   <span className={styles.visit}>
@@ -79,7 +91,7 @@ function MyAdvPart({ data, setData }) {
                 </span>
                 <span>{item.address}</span>
               </div>
-              <p> {sp(item.price)} تومان </p>
+              <p> {item.price} تومان </p>
             </div>
 
             <div className={styles.buttons}>

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { ColorRing } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
 import SigninInput from "@/elements/SigninInput";
+import Loader from "@/modules/Loader";
 
 function SignupPage() {
   const router = useRouter();
@@ -93,14 +94,7 @@ function SignupPage() {
         />
 
         {information.loading ? (
-          <ColorRing
-            visible={true}
-            height={60}
-            ariaLabel="color-ring-loading"
-            wrapperStyle={{}}
-            wrapperClass="color-ring-wrapper"
-            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-          />
+         <Loader />
         ) : (
           <button type="submit" onClick={registerHandler}>
             {" "}

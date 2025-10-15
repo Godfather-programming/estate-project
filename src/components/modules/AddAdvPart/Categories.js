@@ -5,6 +5,9 @@ import CategoryButton from "@/elements/CategoryButton";
 
 
 function Categories({data, changeHandler}) {
+  // const icons = {
+
+  // }
   return (
     <div className={styles.categoryPart}>
       <p> دسته بندی </p>

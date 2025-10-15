@@ -32,6 +32,7 @@ const centerStyles = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  marginBottom: "50px"
 };
 
 export { types, categories, cities1, cities2, dateStyle, centerStyle, centerStyles };

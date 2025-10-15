@@ -6,28 +6,12 @@ import styles from "@/templates/DashbordPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
 import MyAdvPart from "@/modules/MyAdvPart";
 
-function MyAdvPage({ email }) {
-  const [data, setData] = useState([]);
-  // const [empty, setEmpty] = useState(false)
-  // const [type, setType] = useState(true);
-  const fetchData = async () => {
-    const res = await fetch("/api/profile/my-profile");
-    const inforamtion = await res.json();
-    console.log({ info: inforamtion.intendedProfiles});
-    if(!(inforamtion.intendedProfiles)) {
-      return
-    } else {
-      setData(inforamtion.intendedProfiles);
-      // setEmpty(true)
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // if (data)
+function MyAdvPage({ email, profiles }) {
+  const [data, setData] = useState(profiles)
+  console.log(data) 
+  if (data)
     return (
-      <div className={styles.container}>
+  <div className={styles.container}>
         <div className={styles.aside}>
           <DashbordAside email={email}/>
         </div>
@@ -37,6 +21,21 @@ function MyAdvPage({ email }) {
         </div>
       </div>
     );
-}
-
-export default MyAdvPage;
+  }
+  
+  export default MyAdvPage;
+  
+  // const [data, setData] = useState([]);
+  // const fetchData = async () => {
+  //   const res = await fetch("/api/profile/my-profile");
+  //   const inforamtion = await res.json();
+  //   console.log({ info: inforamtion.intendedProfiles});
+  //   if(!(inforamtion.intendedProfiles)) {
+  //     return
+  //   } else {
+  //     setData(inforamtion.intendedProfiles);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);

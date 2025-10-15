@@ -14,9 +14,11 @@ import toast from "react-hot-toast";
 import { e2p } from "@/utils/replaceNumber";
 
 function AddAdvPage({ email }) {
-  console.log(email)
+  console.log(email);
   const date = new Date();
   const time = Intl.DateTimeFormat("fa").format(date);
+
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     article: "",
     explanations: "",
@@ -29,7 +31,7 @@ function AddAdvPage({ email }) {
     amenities: [],
     rules: [],
     published: "false",
-    email: email
+    email: email,
   });
 
   const changeHandler = (e) => {
@@ -39,7 +41,7 @@ function AddAdvPage({ email }) {
 
   const addAdvHandler = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     const res = await fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(data),
@@ -47,23 +49,23 @@ function AddAdvPage({ email }) {
     });
 
     const inforamtion = await res.json();
-
+    setLoading(false)
     if (res.status === 200) {
       toast.success(inforamtion.message);
-      setData({
-        article: "",
-        explanations: "",
-        address: "",
-        phoneNumber: "",
-        price: "",
-        firm: "",
-        category: "",
-        constructionDate: time,
-        amenities: [],
-        rules: [],
-        published: "false",
-        email
-      });
+      // setData({
+      //   article: "",
+      //   explanations: "",
+      //   address: "",
+      //   phoneNumber: "",
+      //   price: "",
+      //   firm: "",
+      //   category: "",
+      //   constructionDate: time,
+      //   amenities: [],
+      //   rules: [],
+      //   published: "false",
+      //   email
+      // });
     } else {
       toast.error(inforamtion.error);
     }
@@ -72,7 +74,7 @@ function AddAdvPage({ email }) {
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
-        <DashbordAside email={email}/>
+        <DashbordAside email={email} />
       </div>
 
       <div className={styles.main}>
@@ -92,7 +94,7 @@ function AddAdvPage({ email }) {
 
             <Dates data={data} setData={setData} />
 
-            <LoadingButton data={data} value="ثبت" handler={addAdvHandler} />
+            <LoadingButton data={data} value="ثبت" handler={addAdvHandler} loading={loading}/>
           </form>
         </div>
       </div>
