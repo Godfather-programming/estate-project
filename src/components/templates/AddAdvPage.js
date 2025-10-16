@@ -41,7 +41,7 @@ function AddAdvPage({ email }) {
 
   const addAdvHandler = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const res = await fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(data),
@@ -49,7 +49,7 @@ function AddAdvPage({ email }) {
     });
 
     const inforamtion = await res.json();
-    setLoading(false)
+    setLoading(false);
     if (res.status === 200) {
       toast.success(inforamtion.message);
       // setData({
@@ -94,7 +94,12 @@ function AddAdvPage({ email }) {
 
             <Dates data={data} setData={setData} />
 
-            <LoadingButton data={data} value="ثبت" handler={addAdvHandler} loading={loading}/>
+            <LoadingButton
+              data={data}
+              value="ثبت"
+              handler={addAdvHandler}
+              loading={loading}
+            />
           </form>
         </div>
       </div>

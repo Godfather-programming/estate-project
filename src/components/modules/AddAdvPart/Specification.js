@@ -31,14 +31,14 @@ function Specifiation({ data, changeHandler }) {
       />
       <Input
         label="شماره تماس"
-        type="number"
+        type="text"
         name="phoneNumber"
         value={data.phoneNumber}
         changeHandler={changeHandler}
       />
       <Input
         label="قیمت(تومان)"
-        type="number"
+        type="text"
         name="price"
         value={data.price}
         changeHandler={changeHandler}

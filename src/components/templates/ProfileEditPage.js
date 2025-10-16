@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 function ProfileEditPage({ data, profileId, email }) {
   console.log(data);
   const [information, setInformation] = useState({
+    _id: data._id,
     article: data.article,
     explanations: data.explanations,
     address: data.address,
@@ -55,13 +56,15 @@ function ProfileEditPage({ data, profileId, email }) {
 
     const res = await fetch(`/api/profile/edit/${profileId}`, {
       method: "PUT",
-      body: JSON.stringify({ profileId, information }),
+      body: JSON.stringify({ information }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
     console.log(data);
     if(res.status === 200) {
       return toast.success(data.message)
+    } else {
+      return toast.error(data.error)
     }
     
   };

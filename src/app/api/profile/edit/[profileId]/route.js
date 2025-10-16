@@ -1,3 +1,4 @@
+import Client from "@/models/Client";
 import Profile from "@/models/Profile";
 import { authOptions } from "@/utils/authOptions";
 import connectDB from "@/utils/connectDB";
@@ -22,9 +23,17 @@ export async function POST(req) {
 }
 
 export async function PUT(req) {
-  validationSession();
-  const { profileId, information } = await req.json();
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json(
+      { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
+      { status: 401 }
+    );
+  }
+  const { information } = await req.json();
+  // const { profileId, information } = await req.json();
   const {
+    _id,
     article,
     explanations,
     address,
@@ -36,25 +45,53 @@ export async function PUT(req) {
     amenities,
     rules,
   } = information;
-  console.log(profileId);
+  console.log(_id);
+
+  if (
+    !_id ||
+    !article ||
+    !explanations ||
+    !address ||
+    !phoneNumber ||
+    !price ||
+    !firm ||
+    !category ||
+    !constructionDate
+  ) {
+    return NextResponse.json(
+      { error: "لطفا اطلاعات را به طور کامل وارد کنید!" },
+      { status: 400 }
+    );
+  }
+
+  const client = await Client.findOne({ email: session.user.email });
+  console.log({ client });
+  if (!client) {
+    return NextResponse.json(
+      { error: "حساب کاربری یافت نشد!" },
+      { status: 404 }
+    );
+  }
+
+  const intendedProfile = await Profile.findOne({ _id });
+  if(!profile) {}
+  console.log({ intendedProfile });
+
+
+  // if (intendedProfile.userId.toHexString() !== client._id.toHexString()) {
+  if(!intendedProfile.userId.equals(client._id)) {
+    return NextResponse.json(
+      { error: "شما به این آگهی دسترسی ندارید!" },
+      { status: 403 }
+    );
+  }
 
   const profile = await Profile.findOneAndUpdate(
-    { _id: profileId },
+    { _id },
     {
-      $set: {
-        article,
-        explanations,
-        address,
-        phoneNumber,
-        price,
-        firm,
-        category,
-        constructionDate,
-        amenities,
-        rules,
-      },
+      $set: information
     },
-    {new : true}
+    { new: true }
   );
 
   return NextResponse.json(

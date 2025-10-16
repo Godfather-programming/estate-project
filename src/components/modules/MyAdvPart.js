@@ -39,17 +39,17 @@ function MyAdvPart({ data, setData }) {
   const deleteHandler = async (e, item) => {
     // e.preventDefault()
     const res = await fetch(`/api/profile/delete/${item._id}`, {
-      method: "Delete",
-      body: JSON.stringify(item._id),
+      method: "DELETE",
+      body: JSON.stringify({id: item._id, userId: item.userId}),
       headers: { "Content-Type": "application/json" },
     });
     const information = await res.json();
     if (res.status === 200) {
-      toast.success(information.message.toString());
+      toast.success(information.message);
       const newData = data.filter((x) => x._id !== item._id);
       setData(newData);
     } else {
-      toast.error(information.error.toString());
+      toast.error(information.error);
     }
   };
 

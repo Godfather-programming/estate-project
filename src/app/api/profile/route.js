@@ -9,7 +9,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  // const session = getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
   // if (!session) {
   //   return NextResponse.json(
   //     { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
@@ -61,14 +61,19 @@ export async function POST(req) {
       );
     }
 
-    const client = await Client.findOne({email: session.user.email})
-    console.log(client)
+    const client = await Client.findOne({ email: session.user.email });
+    if (!client) {
+      return NextResponse.json(
+        { error: "حساب کاربری یافت نشد!" },
+        { status: 404 }
+      );
+    }
 
     const recordedProfile = await Profile.create({
       ...data,
       price: sp(data.price),
       phoneNumber: e2p(data.phoneNumber),
-      userId: new Types.ObjectId(client._id)
+      userId: new Types.ObjectId(client._id),
     });
 
     console.log(recordedProfile.userId);
@@ -87,11 +92,23 @@ export async function POST(req) {
 }
 
 export async function GET() {
-  validationSession();
+  // validationSession();
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json(
+      { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
+      { status: 401 }
+    );
+  }
   await connectDB();
 
-  // const data = await req.json();
-  // console.log(data);
+  const client = Profile.findOne({ email: session.user.email });
+  if (!client) {
+    return NextResponse.json(
+      { error: "حساب کاربری یافت نشد!" },
+      { status: 404 }
+    );
+  }
 
   const profiles = await Profile.find();
 

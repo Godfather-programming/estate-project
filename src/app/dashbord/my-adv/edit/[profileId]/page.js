@@ -6,6 +6,9 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function Edit() {
+  // const { profileId } = await params
+  // console.log(profileId)
+  
   const router = useRouter()
   const [data, setData] = useState(null);
   const { profileId } = useParams();
