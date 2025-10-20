@@ -74,12 +74,16 @@ export async function PUT(req) {
   }
 
   const intendedProfile = await Profile.findOne({ _id });
-  if(!profile) {}
+  if (!intendedProfile) {
+    return NextResponse.json(
+      { error: "آگهی مورد نظر یافت نشد!" },
+      { status: 404 }
+    );
+  }
   console.log({ intendedProfile });
 
-
   // if (intendedProfile.userId.toHexString() !== client._id.toHexString()) {
-  if(!intendedProfile.userId.equals(client._id)) {
+  if (!intendedProfile.userId.equals(client._id)) {
     return NextResponse.json(
       { error: "شما به این آگهی دسترسی ندارید!" },
       { status: 403 }
@@ -89,7 +93,7 @@ export async function PUT(req) {
   const profile = await Profile.findOneAndUpdate(
     { _id },
     {
-      $set: information
+      $set: information,
     },
     { new: true }
   );

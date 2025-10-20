@@ -7,6 +7,7 @@ import { centerStyles } from "src/constants/constantData";
 import { ColorRing } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader";
+import Link from "next/link";
 
 function LoadingButton({ data, value, handler, loading }) {
   return (
@@ -15,6 +16,12 @@ function LoadingButton({ data, value, handler, loading }) {
         <div style={centerStyles}>
           <Loader />
         </div>
+      ) : value === "ویرایش" ? (
+        <Link href="/dashbord/my-adv" className={styles.link}>
+          <button type="submit" className={styles.register} onClick={handler}>
+            {value} آگهی
+          </button>
+        </Link>
       ) : (
         <button type="submit" className={styles.register} onClick={handler}>
           {value} آگهی

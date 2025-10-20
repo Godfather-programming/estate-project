@@ -18,34 +18,23 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import connectDB from "@/utils/connectDB";
 import Link from "next/link";
+import Loader from "./Loader";
 
 function MyAdvPart({ data, setData }) {
-  // const router = useRouter();
-  // console.log({empty})
-  console.log({data})
-  console.log(data.category)
-  // const [data, setData] = useState([]);
-  // const [type, setType] = useState(true)
-  // const fetchData = async () => {
-  //   const res = await fetch("/api/profile");
-  //   const inforamtion = await res.json();
-  //   console.log(inforamtion)
-  //   setData(inforamtion.profiles)
-  // };
-  // useEffect(() => {
-  //  fetchData()
-  // }, []);
+  const [loading, setLoading] = useState(false);
+  console.log({ data });
 
   const deleteHandler = async (e, item) => {
+    setLoading(true);
     // e.preventDefault()
     const res = await fetch(`/api/profile/delete/${item._id}`, {
       method: "DELETE",
-      body: JSON.stringify({id: item._id, userId: item.userId}),
-      headers: { "Content-Type": "application/json" },
     });
     const information = await res.json();
+    setLoading(false);
     if (res.status === 200) {
       toast.success(information.message);
+      // router.refresh()
       const newData = data.filter((x) => x._id !== item._id);
       setData(newData);
     } else {
@@ -54,65 +43,74 @@ function MyAdvPart({ data, setData }) {
   };
 
   const icons = {
-    ویلا: <BsFillHouseHeartFill size={20} color="#0500ff"/>,
-    آپارتمان: <MdOutlineApartment size={20} color="#0500ff"/>,
-    مغازه: <FaStore size={20} color="#0500ff"/>,
-    دفتر: <PiOfficeChairFill size={20} color="#0500ff"/>,
-  }
+    ویلا: <BsFillHouseHeartFill size={20} color="#0500ff" />,
+    آپارتمان: <MdOutlineApartment size={20} color="#0500ff" />,
+    مغازه: <FaStore size={20} color="#0500ff" />,
+    دفتر: <PiOfficeChairFill size={20} color="#0500ff" />,
+  };
   return (
     <div className={styles.container}>
-      {data ? (
-        data?.map((item) => (
-          <div className={styles.wrapper} key={item._id}>
-            <div className={styles.adv}>
-              <div className={styles.type}>
-                {" "}
-                <span className={styles.icon}>
-                  {/* {" "}
+      {data
+        ? data?.map((item) => (
+            <div className={styles.wrapper} key={item._id}>
+              <div className={styles.adv}>
+                <div className={styles.type}>
+                  {" "}
+                  <span className={styles.icon}>
+                    {/* {" "}
                   <MdOutlineApartment  />{" "} */}
-                {icons[item.category]}
-                </span>{" "}
-                <Link href={`/buy-residential/details/${item._id}`}>
-                  <span className={styles.visit}>
+                    {icons[item.category]}
+                  </span>{" "}
+                  <Link href={`/buy-residential/details/${item._id}`}>
+                    <span className={styles.visit}>
+                      {" "}
+                      <span> مشاهده آگهی </span>
+                      <span>
+                        {" "}
+                        <FiArrowLeftCircle size={18} />{" "}
+                      </span>{" "}
+                    </span>{" "}
+                  </Link>
+                </div>
+                <p> {item.article} </p>
+                <div className={styles.place}>
+                  <span>
                     {" "}
-                    <span> مشاهده آگهی </span>
+                    <MdOutlinePlace size={18} />{" "}
+                  </span>
+                  <span>{item.address}</span>
+                </div>
+                <p> {item.price} تومان </p>
+              </div>
+
+              <div className={styles.buttons}>
+                <Link href={`/dashbord/my-adv/edit/${item._id}`}>
+                  <button className={styles.edit}>
+                    <span> ویرایش </span>
                     <span>
                       {" "}
-                      <FiArrowLeftCircle size={18} />{" "}
-                    </span>{" "}
-                  </span>{" "}
+                      <FiEdit size={18} />{" "}
+                    </span>
+                  </button>
                 </Link>
+                {loading ? (
+                  <Loader deleted={"he"}/>
+                ) : (
+                  <button
+                    className={styles.delete}
+                    onClick={(e) => deleteHandler(e, item)}
+                  >
+                    <span> حذف آگهی </span>
+                    <span>
+                      {" "}
+                      <AiOutlineDelete size={18} />{" "}
+                    </span>
+                  </button>
+                )}
               </div>
-              <p> {item.article} </p>
-              <div className={styles.place}>
-                <span>
-                  {" "}
-                  <MdOutlinePlace size={18} />{" "}
-                </span>
-                <span>{item.address}</span>
-              </div>
-              <p> {item.price} تومان </p>
             </div>
-
-            <div className={styles.buttons}>
-              <Link href={`/dashbord/my-adv/edit/${item._id}`}>
-                <button className={styles.edit}>
-                  <span> ویرایش </span>
-                  <span> <FiEdit size={18} /> </span> 
-                </button>
-              </Link>
-              <button
-                className={styles.delete}
-                onClick={(e) => deleteHandler(e, item)}
-              >
-                <span> حذف آگهی </span>
-                <span> <AiOutlineDelete size={18} /> </span>
-              </button>
-              {/* <DeleteButton item={item} deleteHandler={deleteHandler}/> */}
-            </div>
-          </div>
-        ))
-      ) : null}
+          ))
+        : null}
 
       <Toaster />
       {!data.length ? (

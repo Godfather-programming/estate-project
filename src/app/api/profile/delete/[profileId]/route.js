@@ -23,17 +23,20 @@ export async function DELETE(req, context) {
   const profileId = await context.params.profileId;
   console.log({ profileId });
 
-  const {id, userId} = await req.json();
-  console.log({id, clientId: client._id.toHexString()});
+  const intendedProfile = await Profile.findOne({_id: profileId})
 
-  if (userId !== client._id.toHexString()) {
+  // const {id, userId} = await req.json();
+  console.log({ clientId: client._id.toHexString() });
+
+  // if (userId !== client._id.toHexString()) {
+  if(!intendedProfile.userId.equals(client._id)){
     return NextResponse.json(
       { error: "شما به این آگهی دسترسی ندارید!" },
       { status: 403 }
     );
   }
 
-  const deletedItem = await Profile.findOneAndDelete({ _id: id });
+  const deletedItem = await Profile.findOneAndDelete({ _id: profileId });
 
   return NextResponse.json(
     { message: "آگهی با موفقیت حذف شد", deletedItem },

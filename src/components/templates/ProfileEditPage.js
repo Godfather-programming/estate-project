@@ -9,11 +9,12 @@ import Amenities from "@/modules/AddAdvPart/Amenities";
 import Rules from "@/modules/AddAdvPart/Rules";
 import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 function ProfileEditPage({ data, profileId, email }) {
   console.log(data);
+  const router = useRouter()
   const [information, setInformation] = useState({
     _id: data._id,
     article: data.article,
@@ -52,7 +53,7 @@ function ProfileEditPage({ data, profileId, email }) {
   };
 
   const editHandler = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const res = await fetch(`/api/profile/edit/${profileId}`, {
       method: "PUT",
@@ -62,7 +63,8 @@ function ProfileEditPage({ data, profileId, email }) {
     const data = await res.json();
     console.log(data);
     if(res.status === 200) {
-      return toast.success(data.message)
+      toast.success(data.message)
+      // router.refresh()
     } else {
       return toast.error(data.error)
     }

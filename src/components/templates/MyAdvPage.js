@@ -9,6 +9,15 @@ import MyAdvPart from "@/modules/MyAdvPart";
 function MyAdvPage({ email, profiles }) {
   const [data, setData] = useState(profiles)
   console.log(data) 
+    const fetchData = async () => {
+    const res = await fetch("/api/profile");
+    const inforamtion = await res.json();
+    console.log(inforamtion)
+    setData(inforamtion.profiles)
+  };
+  useEffect(() => {
+    fetchData()
+  }, [])
   if (data)
     return (
   <div className={styles.container}>
