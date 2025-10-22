@@ -10,7 +10,7 @@ import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
-function DashbordAside({ email, children }) {
+function DashbordAside({ email }) {
   const [admin, setAdmin] = useState(null);
 
   const fetchClient = async () => {

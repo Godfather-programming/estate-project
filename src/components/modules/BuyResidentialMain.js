@@ -1,6 +1,6 @@
-// "use client"
+"use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/modules/BuyResidentialMain.module.scss";
 import toast, { Toaster } from "react-hot-toast";
 import { MdOutlineApartment } from "react-icons/md";
@@ -12,12 +12,12 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import { sp } from "@/utils/replaceNumber";
 import Link from "next/link";
 
-function BuyResidnetialMain({ data, setData }) {
-  const information = data.filter(item => item.published === "true")
-  console.log({information});
+function BuyResidnetialMain({ finalData }) {
+
+
   return (
     <div className={styles.container}>
-      {information.map((item) => (
+      {finalData.map((item) => (
         <div className={styles.wrapper} key={item._id}>
           <span className={styles.icon}>
             {item.category === "ویلا" ? <BsFillHouseHeartFill /> : null}

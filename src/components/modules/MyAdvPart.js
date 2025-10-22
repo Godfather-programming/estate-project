@@ -94,7 +94,7 @@ function MyAdvPart({ data, setData }) {
                   </button>
                 </Link>
                 {loading ? (
-                  <Loader deleted={"he"}/>
+                  <Loader loading={loading}/>
                 ) : (
                   <button
                     className={styles.delete}

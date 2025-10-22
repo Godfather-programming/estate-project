@@ -1,26 +1,16 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "@/modules/BuyResidentialAside.module.scss";
 import { LuTypeOutline } from "react-icons/lu";
+import { info } from "sass";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { queries } from "src/constants/constantData";
 
+function BuyResidentialAside() {
 
-function BuyResidentialAside({data, setData}) {
-  const [information, setInformation] = useState(data)
-  const categoryHandler = (e) => {
-    const {tagName, innerText} = e.target
-    console.log({tagName, innerText})
-    if(tagName !== "LI") return
-  
-    if(innerText === "همه") {
-      setData(information)
-    } else {
-      const newData = information.filter(item => item.category === innerText)
-      setData(newData)
-    }
-
-  }
   return (
     <div className={styles.container}>
       {/* <div> */}
@@ -33,12 +23,35 @@ function BuyResidentialAside({data, setData}) {
         <span> دسته بندی </span>
       </p>
       {/* </div> */}
-      <ul className={styles.types} onClick={categoryHandler}>
-        <li> همه </li>
-        <li> ویلا </li>
-        <li> آپارتمان </li>
-        <li> دفتر </li>
-        <li> مغازه </li>
+      <ul className={styles.types}>
+        <Link href="/buy-residential">
+          <li> همه </li>
+        </Link>
+
+        {queries.map((query) => (
+          <Link
+            href={{
+              pathname: "buy-residential",
+              query: { category: Object.keys(query) },
+            }}
+            key={Object.keys(query)}
+          >
+            <li> {Object.values(query)} </li>
+          </Link>
+        ))}
+
+        {/* <Link href="/buy-residential?category=آپارتمان">
+          {" "}
+          <li> آپارتمان </li>{" "}
+        </Link>
+        <Link href="/buy-residential?category=دفتر">
+          {" "}
+          <li> دفتر </li>{" "}
+        </Link>
+        <Link href="/buy-residential?category=مغازه">
+          {" "}
+          <li> مغازه </li>{" "}
+        </Link> */}
       </ul>
     </div>
   );
@@ -56,7 +69,7 @@ export default BuyResidentialAside;
 
 //     if(innerText === "همه") {
 //       setData(inforamtion)
-      
+
 //     } else {
 //       const newData = inforamtion.filter(item => item.category === innerText)
 //       console.log({newData})

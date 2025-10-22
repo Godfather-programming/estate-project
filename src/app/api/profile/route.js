@@ -92,31 +92,28 @@ export async function POST(req) {
 }
 
 export async function GET() {
-  // validationSession();
-  const session = await getServerSession(authOptions);
-  if (!session) {
+  try {
+    await connectDB();
+
+    // const profiles = await Profile.find().select("-userId");
+    const profiles = await Profile.find();
+
+    console.log(profiles);
+
     return NextResponse.json(
-      { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
-      { status: 401 }
+      {
+        message: "اطلاعات با موفقیت دریافت شد",
+        profiles,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "مشکلی در سرور رخ داده است!" },
+      {
+        status: 500,
+      }
     );
   }
-  await connectDB();
-
-  const client = Profile.findOne({ email: session.user.email });
-  if (!client) {
-    return NextResponse.json(
-      { error: "حساب کاربری یافت نشد!" },
-      { status: 404 }
-    );
-  }
-
-  const profiles = await Profile.find();
-
-  return NextResponse.json(
-    {
-      message: "اطلاعات با موفقیت دریافت شد",
-      profiles,
-    },
-    { status: 200 }
-  );
 }

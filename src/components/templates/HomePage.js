@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
+import Link from "next/link";
 
 function HomePage() {
   // const session = await getServerSession(authOptions)
@@ -31,10 +32,16 @@ function HomePage() {
 
       <div className={styles.categories}>
         {categories.map((item, index) => (
-          <div key={index} className={styles.category}>
-            <Image src={item.src} width={220} height={130} alt="apartment" />
-            <span> {item.category} </span>
-          </div>
+          <Link
+            href={`/buy-residential?category=${item.category}`}
+            key={index}
+            className={styles.kind}
+          >
+            <div className={styles.category}>
+              <Image src={item.src} width={220} height={130} alt={item.title}/>
+              <span> {item.title} </span>
+            </div>
+          </Link>
         ))}
       </div>
 

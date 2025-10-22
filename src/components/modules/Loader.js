@@ -1,10 +1,10 @@
 import React from "react";
 import { ColorRing } from "react-loader-spinner";
 
-function Loader({ deleted }) {
+function Loader({ loading }) {
   return (
     <>
-      {deleted ? (
+      {loading ? (
         <ColorRing
           visible={true}
           height={60}

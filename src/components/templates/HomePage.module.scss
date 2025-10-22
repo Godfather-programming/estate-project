@@ -37,7 +37,20 @@
           font-size: 0.9rem;
           margin-top: 3px;
         }
+    }
+
 }
+    .kind:hover {
+        transition: all 0.2 ease-in;
+        -webkit-transition: all 0.2 ease-in;
+        -moz-transition: all 0.2 ease-in;
+        -ms-transition: all 0.2 ease-in;
+        -o-transition: all 0.2 ease-in;
+        transform: rotate(-5deg);
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
 }
 
 .categories {
