@@ -1,10 +1,27 @@
-import ProfileDetailsPage from '@/templates/ProfileDetailsPage'
-import React from 'react'
+import Profile from "@/models/Profile";
+import ProfileDetailsPage from "@/templates/ProfileDetailsPage";
+import connectDB from "@/utils/connectDB";
+import React from "react";
 
-function Details() {
-  return (
-    <ProfileDetailsPage />
-  )
+async function Details(props) {
+  const params = await props.params;
+  const profileId = await params.profileId;
+  // console.log({ profileId });
+  await connectDB();
+  const intendedProfile = await Profile.findOne({ _id: profileId });
+  // console.log(intendedProfile);
+
+
+  const res = await fetch(
+    `http://localhost:3000/api/profile/details/${profileId}`,
+    { next: { revalidate: 10 } }
+  );
+  const data = await res.json();
+  console.log(data.intendedProfile);
+
+  if (!data.intendedProfile)
+    return <h3> مشکی پیش آمده است! لطفا بعدا امتحان کنید. </h3>;
+  return <ProfileDetailsPage intendedProfile={data.intendedProfile}/>;
 }
 
-export default Details
+export default Details;

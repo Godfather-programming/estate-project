@@ -1,16 +1,25 @@
-import React from 'react'
+import React from "react";
 
-import styles from '@/modules/DetailsMain.module.scss'
+import styles from "@/modules/DetailsMain.module.scss";
 import { MdOutlinePlace } from "react-icons/md";
+import Options from "./Options";
+import ItemList from "./ItemList";
 
-function DetailsMain({data, setData}) {
-  const {article, explanations, address, amenities, rules} = data
+function DetailsMain({
+  intendedProfile: { article, explanations, address, amenities, rules },
+}) {
+  // const { article, explanations, address, amenities, rules } = intendedProfile;
+  console.log({ amenities });
+  console.log({ rules });
   return (
     <div className={styles.container}>
       <div className={styles.name}>
-        <p> { article } </p>
+        <h1> {article} </h1>
         <div className={styles.place}>
-          <span> <MdOutlinePlace size={20}/> </span>
+          <span>
+            {" "}
+            <MdOutlinePlace size={20} />{" "}
+          </span>
           <span> {address} </span>
         </div>
       </div>
@@ -21,27 +30,11 @@ function DetailsMain({data, setData}) {
         <p> {explanations} </p>
       </div>
 
-      <div className={styles.amenities}>
-         <p> امکانات </p>
-         <span className={styles.line}></span>
-         <ul>
-           {amenities?.map(item => (
-            <li key={item._id}> {item.text} </li>
-           ))}
-         </ul>
-      </div>
+      <ItemList title="امکانات" data={amenities} />
 
-      <div className={styles.amenities}>
-        <p> قوانین </p>
-        <span className={styles.line}></span>
-        <ul>
-          {rules?.map(item => (
-            <li key={item._id}> {item.sentence} </li>
-          ))}
-        </ul>
-      </div>
+      <ItemList title="قوانین" data={rules} />
     </div>
-  )
+  );
 }
 
-export default DetailsMain
+export default DetailsMain;

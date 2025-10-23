@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import connectDB from "@/utils/connectDB";
 import Link from "next/link";
 import Loader from "./Loader";
+import { icons } from "src/constants/constantData";
 
 function MyAdvPart({ data, setData }) {
   const [loading, setLoading] = useState(false);
@@ -42,12 +43,7 @@ function MyAdvPart({ data, setData }) {
     }
   };
 
-  const icons = {
-    ویلا: <BsFillHouseHeartFill size={20} color="#0500ff" />,
-    آپارتمان: <MdOutlineApartment size={20} color="#0500ff" />,
-    مغازه: <FaStore size={20} color="#0500ff" />,
-    دفتر: <PiOfficeChairFill size={20} color="#0500ff" />,
-  };
+
   return (
     <div className={styles.container}>
       {data
@@ -57,8 +53,6 @@ function MyAdvPart({ data, setData }) {
                 <div className={styles.type}>
                   {" "}
                   <span className={styles.icon}>
-                    {/* {" "}
-                  <MdOutlineApartment  />{" "} */}
                     {icons[item.category]}
                   </span>{" "}
                   <Link href={`/buy-residential/details/${item._id}`}>

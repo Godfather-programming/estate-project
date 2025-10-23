@@ -6,21 +6,21 @@ import { validationSession } from "@/utils/session";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
-  validationSession();
+// export async function GET(req, context) {
+//   const id = await context.params.profileId
+//   console.log({id})
 
-  await connectDB();
+//   validationSession();
 
-  const id = await req.json();
-  console.log(id);
-  const intendedProfile = await Profile.findOne({ _id: id });
-  console.log(intendedProfile);
+//   await connectDB();
+//   const intendedProfile = await Profile.findOne({ _id: id });
+//   console.log(intendedProfile);
 
-  return NextResponse.json({
-    message: "اطلاعات پروفایل با موفقیت دریافت شد",
-    intendedProfile,
-  });
-}
+//   return NextResponse.json({
+//     message: "اطلاعات پروفایل با موفقیت دریافت شد",
+//     intendedProfile: intendedProfile,
+//   }, {status: 200});
+// }
 
 export async function PUT(req) {
   const session = await getServerSession(authOptions);

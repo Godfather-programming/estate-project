@@ -1,12 +1,13 @@
-// "use client";
+"use client";
 
-// import { useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import styles from '@/templates/ProfileDetailsPage.module.scss'
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DetailsMain from "@/modules/DetailsMain";
 import DetailsAside from "@/modules/DetailsAside";
 
-async function ProfileDetailsPage() {
+function ProfileDetailsPage({intendedProfile}) {
+  console.log(intendedProfile)
   
   // const [data, setData] = useState([]);
   // const {profileId} = useParams()
@@ -26,11 +27,11 @@ async function ProfileDetailsPage() {
   // console.log(data)
   return <div className={styles.container}>
     <div className={styles.main}>
-      {/* <DetailsMain data={data} setData={setData}/>  */}
+       <DetailsMain intendedProfile={intendedProfile} /> 
     </div>
 
     <div className={styles.aside}>
-      {/* <DetailsAside data={data} setData={setData}/> */}
+       <DetailsAside intendedProfile={intendedProfile} /> 
     </div>
   </div>;
 }

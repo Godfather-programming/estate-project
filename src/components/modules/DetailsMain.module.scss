@@ -8,8 +8,10 @@
 }
 
 .name {
-    p {
-        color: $darkBlue;
+    h1 {
+        @include textStyle($darkBlue, 1.5rem, 500);
+        // color: $darkBlue;
+        // font-weight: 500;
     }
     .place {
         margin-top: 10px;
@@ -34,39 +36,9 @@
     }
 }
 
-.line {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: gray;
-}
-
-.amenities {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    p {
-        color: $darkBlue;
-    }
 
 
-    li {
-        margin-right: 15px;
-        padding-right: 0;
-        text-wrap: wrap;
-        // display: flex;
-        // list-style: circle;
-    }
 
-    li::marker {
-        color: $darkBlue;
-        // position: absolute;
-        // right: 515px;
-        // display: flex;
-        // align-items: center;
-    }
-}
 
 @include laptop {
     .container {

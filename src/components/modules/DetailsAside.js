@@ -4,17 +4,27 @@ import styles from "./DetailsAside.module.scss";
 import { MdRealEstateAgent } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
 import { PiShareNetwork } from "react-icons/pi";
-import { MdOutlineApartment } from "react-icons/md";
-import { BsFillHouseHeartFill } from "react-icons/bs";
-import { FaStore } from "react-icons/fa";
-import { PiOfficeChairFill } from "react-icons/pi";
+// import { MdOutlineApartment } from "react-icons/md";
+// import { BsFillHouseHeartFill } from "react-icons/bs";
+// import { FaStore } from "react-icons/fa";
+// import { PiOfficeChairFill } from "react-icons/pi";
 import { FaCalendarCheck } from "react-icons/fa6";
+import { icons } from "src/constants/constantData";
 
-function DetailsAside({ data, setData }) {
-  console.log(data);
-  const { firm, phoneNumber, category, article, price, constructionDate } =
-    data;
-  // console.log(category)
+function DetailsAside({
+  intendedProfile: {
+    firm,
+    phoneNumber,
+    category,
+    article,
+    price,
+    constructionDate,
+  },
+}) {
+  // console.log(intendedProfile);
+  // const { firm, phoneNumber, category, article, price, constructionDate } =
+  //   intendedProfile;
+
   return (
     <div className={styles.container}>
       <div className={styles.estate}>
@@ -44,25 +54,14 @@ function DetailsAside({ data, setData }) {
       <div className={styles.specifications}>
         <div className={styles.category}>
           {" "}
-          <span>
-            {category === "آپارتمان" ? (
-              <MdOutlineApartment size={20} color="#0500ff" />
-            ) : null}
-            {category === "ویلا" ? (
-              <BsFillHouseHeartFill size={20} color="#0500ff" />
-            ) : null}
-            {category === "مغازه" ? (
-              <FaStore size={20} color="#0500ff" />
-            ) : null}
-            {category === "دفتر" ? (
-              <PiOfficeChairFill size={20} color="#0500ff" />
-            ) : null}
-          </span>{" "}
-          <span> {article} </span>
+          <span>{icons[category]}</span> <span> {article} </span>
         </div>
         <p> {price} تومان </p>
         <div className={styles.Date}>
-          <span> <FaCalendarCheck size={18} color="#0500ff"/> </span>
+          <span>
+            {" "}
+            <FaCalendarCheck size={18} color="#0500ff" />{" "}
+          </span>
           <span> {constructionDate} </span>
         </div>
       </div>

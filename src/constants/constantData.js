@@ -1,3 +1,10 @@
+import { MdOutlineApartment } from "react-icons/md";
+import { BsFillHouseHeartFill } from "react-icons/bs";
+import { FaStore } from "react-icons/fa";
+import { PiOfficeChairFill } from "react-icons/pi";
+
+
+
 const types = ["خرید", "فروش", "رهن", "اجاره"];
 
 const categories = [
@@ -42,6 +49,13 @@ const queries = [
   { مغازه: "مغازه" },
 ];
 
+const icons = {
+  ویلا: <BsFillHouseHeartFill size={20} color="#0500ff" />,
+  آپارتمان: <MdOutlineApartment size={20} color="#0500ff" />,
+  مغازه: <FaStore size={20} color="#0500ff" />,
+  دفتر: <PiOfficeChairFill size={20} color="#0500ff" />,
+};
+
 export {
   types,
   categories,
@@ -51,4 +65,5 @@ export {
   centerStyle,
   centerStyles,
   queries,
+  icons
 };
