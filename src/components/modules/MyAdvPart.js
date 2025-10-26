@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import connectDB from "@/utils/connectDB";
 import Link from "next/link";
 import Loader from "./Loader";
-import { icons } from "src/constants/constantData";
+import { icons } from "@/constants/icons";
 
 function MyAdvPart({ data, setData }) {
   const [loading, setLoading] = useState(false);

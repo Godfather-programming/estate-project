@@ -1,5 +1,5 @@
 import React from "react";
-import { centerStyle } from "src/constants/constantData";
+import { centerStyle } from "@/constants/styles";
 
 function CategoryButton({type, category, changeHandler }) {
   return (

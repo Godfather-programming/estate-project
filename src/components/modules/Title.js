@@ -2,7 +2,7 @@ import React from 'react'
 
 function Title({children}) {
   return (
-     <p> {children} </p>
+     <p style={{color: "#0500ff"}}> {children} </p>
   )
 }
 

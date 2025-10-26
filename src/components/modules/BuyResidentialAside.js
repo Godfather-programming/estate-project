@@ -7,7 +7,7 @@ import { LuTypeOutline } from "react-icons/lu";
 import { info } from "sass";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { queries } from "src/constants/constantData";
+import { queries } from "@/constants/queries";
 
 function BuyResidentialAside() {
 

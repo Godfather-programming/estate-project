@@ -25,7 +25,7 @@ export const authOptions = {
           throw new Error("ایمیل یا رمزعبور اشتباه است!");
         }
 
-        return { email: email };
+        return { email: email, name:password };
       },
     }),
   ],

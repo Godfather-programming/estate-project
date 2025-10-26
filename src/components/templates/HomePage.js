@@ -3,16 +3,14 @@ import React from "react";
 import styles from "@/templates/HomePage.module.scss";
 import { FaRegCircle } from "react-icons/fa6";
 import { MdOutlineApartment } from "react-icons/md";
-import {
-  categories,
-  cities1,
-  cities2,
-  types,
-} from "src/constants/constantData";
+
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
+import { types } from "@/constants/types";
+import { cities1, cities2 } from "@/constants/cities";
+import { categories } from "@/constants/categories";
 
 function HomePage() {
   // const session = await getServerSession(authOptions)

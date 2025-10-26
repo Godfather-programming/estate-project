@@ -4,12 +4,10 @@ import styles from "./DetailsAside.module.scss";
 import { MdRealEstateAgent } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
 import { PiShareNetwork } from "react-icons/pi";
-// import { MdOutlineApartment } from "react-icons/md";
-// import { BsFillHouseHeartFill } from "react-icons/bs";
-// import { FaStore } from "react-icons/fa";
-// import { PiOfficeChairFill } from "react-icons/pi";
+
 import { FaCalendarCheck } from "react-icons/fa6";
-import { icons } from "src/constants/constantData";
+import { icons } from "@/constants/icons";
+import SharingButton from "./SharingButton";
 
 function DetailsAside({
   intendedProfile: {
@@ -43,13 +41,7 @@ function DetailsAside({
         </div>
       </div>
 
-      <div className={styles.sharing}>
-        <span>
-          {" "}
-          <PiShareNetwork size={18} color="#0500ff" />{" "}
-        </span>
-        <span> اشتراک گذاری </span>
-      </div>
+      <SharingButton />
 
       <div className={styles.specifications}>
         <div className={styles.category}>

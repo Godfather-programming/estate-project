@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import styles from "@/AddAdvPart/LoadingButton.module.scss";
-import { centerStyles } from "src/constants/constantData";
+import { centerStyles } from "@/constants/styles";
 import { ColorRing } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader";

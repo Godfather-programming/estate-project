@@ -4,7 +4,7 @@ import styles from "@/AddAdvPart/Dates.module.scss";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import DatePicker from "react-multi-date-picker";
-import { dateStyle } from "src/constants/constantData";
+import { dateStyle } from "@/constants/styles";
 
 function Dates({ data, setData }) {
   const dateHandler = (e) => {
