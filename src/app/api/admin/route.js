@@ -11,7 +11,7 @@ export async function PUT(req) {
     { _id: profileId },
     {
       $set: {
-        published: "true",
+        published: true,
       },
     }, 
     {new: true}

@@ -16,7 +16,7 @@ function AdminMain() {
     const res = await fetch("/api/profile");
     const inforamtion = await res.json();
     const intendedData = inforamtion.profiles.filter(
-      (item) => item.published === "false"
+      (item) => item.published === false
     );
     console.log({ intendedData });
     if (intendedData) {

@@ -13,9 +13,11 @@ async function BuyResidential(props) {
   const searchParams = await props.searchParams
   console.log({searchParams})
 
-  let finalData = data.profiles
+  
+
+  let finalData = data.profiles.filter(item => item.published === true)
   if(searchParams.category) {
-     const newData = data.profiles.filter(item => item.category === searchParams.category)
+     const newData = data.profiles.filter(item => item.category === searchParams.category && item.published === true) 
      console.log({newData})
      finalData = newData
      console.log({finalData})

@@ -18,7 +18,7 @@ function Header() {
           {" "}
           <span> صفحه اصلی </span>{" "}
         </Link>
-        <Link href="buy-residential"> <span> آگهی ها </span> </Link>
+        <Link href="/buy-residential"> <span> آگهی ها </span> </Link>
       </div>
       <div className={styles.entrance}>
         {" "}

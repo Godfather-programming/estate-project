@@ -45,8 +45,8 @@ const profileSchema = new Schema(
       default: [],
     },
     published: {
-      type: String,
-      required: true,
+      type: Boolean,
+      default: false,
     },
     email: {
       type: String,

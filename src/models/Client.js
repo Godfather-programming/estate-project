@@ -10,6 +10,10 @@ const clientSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "USER",
+  },
   // repeatedPassword: {
   //   type: String,
   //   required: true,
