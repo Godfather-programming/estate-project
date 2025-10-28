@@ -54,7 +54,7 @@ function SignupPage() {
     // console.log(data);
 
     if (res.status === 201) {
-      // router.push("/signin")
+      router.push("/signin")
     } else {
       toast.error(data.error);
     }

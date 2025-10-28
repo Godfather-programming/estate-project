@@ -7,8 +7,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Client from "@/models/Client";
 import { redirect } from "next/navigation";
+import connectDB from "@/utils/connectDB";
 
 async function DashbordPage() {
+
+  await connectDB()
   
   const session = await getServerSession(authOptions);
   console.log(session);
@@ -17,12 +20,13 @@ async function DashbordPage() {
   }
   const email  = session?.user.email;
   const client = await Client.findOne({ email });
+  console.log(client.role)
   const date = client?.createdAt;
   // use dashbord things here for don't doing the props drilling
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
-        <DashbordAside email={email}/>
+        <DashbordAside email={email} role={client.role}/>
       </div>
 
       <div className={styles.main}>

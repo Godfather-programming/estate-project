@@ -10,34 +10,39 @@ import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
-function DashbordAside({ email }) {
-  const [admin, setAdmin] = useState(null);
+function DashbordAside({ email, role }) {
+  console.log({ email, role });
+  // const [admin, setAdmin] = useState(null);
 
-  const fetchClient = async () => {
-    const res = await fetch("/api/clientss", {
-      method: "POST",
-      body: JSON.stringify(email),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
-    console.log(data);
-    setAdmin(data.valid);
-  };
+  // const fetchClient = async () => {
+  //   const res = await fetch("/api/clientss", {
+  //     method: "POST",
+  //     body: JSON.stringify(email),
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+  //   const data = await res.json();
+  //   console.log(data);
+  //   if (res.status === 200) {
+  //     setAdmin(data.valid);
+  //   } else {
+  //     return;
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchClient();
-  }, []);
+  // useEffect(() => {
+  //   fetchClient();
+  // }, []);
 
   // if (admin)
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <IoPersonCircleOutline size={40} color="#0500ff" />
-        {admin ? <p> Admin </p> : null}
+        {role === "ADMIN" ? <p> Admin </p> : null}
         <span className={styles.email}> {email} </span>
         <span className={styles.line}> </span>
       </div>
-    
+
       <div className={styles.options}>
         <ul>
           <Link href="/dashbord">
@@ -52,7 +57,7 @@ function DashbordAside({ email }) {
             {" "}
             <li> ثبت آگهی </li>{" "}
           </Link>
-          {admin ? (
+          {role === "ADMIN" ? (
             <Link href="/admin">
               {" "}
               <li> در انتظار تایید </li>{" "}
@@ -60,7 +65,7 @@ function DashbordAside({ email }) {
           ) : null}
         </ul>
       </div>
-    
+
       <div className={styles.exit} onClick={signOut}>
         <RxExit size="25px" />
         <span> خروج </span>
@@ -70,4 +75,3 @@ function DashbordAside({ email }) {
 }
 
 export default DashbordAside;
-

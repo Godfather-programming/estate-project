@@ -7,36 +7,33 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
-function AdminMain() {
-  const router = useRouter();
+function AdminMain({profiles}) {
+  // const router = useRouter();
   const [data, setData] = useState([]);
-  const [empty, setEmpty] = useState(false);
-  console.log({ empty });
-  const fetchData = async () => {
-    const res = await fetch("/api/profile");
-    const inforamtion = await res.json();
-    const intendedData = inforamtion.profiles.filter(
-      (item) => item.published === false
-    );
-    console.log({ intendedData });
-    if (intendedData) {
-      setData(intendedData);
-      // setEmpty(true);
-    } else {
-      return;
-    }
-  };
+  // const [empty, setEmpty] = useState(false);
+  // console.log({ empty });
+  // const fetchData = async () => {
+  //   const res = await fetch("/api/profile");
+  //   const inforamtion = await res.json();
+  //   const intendedData = inforamtion.profiles.filter(
+  //     (item) => item.published === false
+  //   );
+  //   console.log({ intendedData });
+  //   if (intendedData) {
+  //     setData(intendedData);
+  //   } else {
+  //     return;
+  //   }
+  // };
 
-  // finish about refreshing page
-  useEffect(() => {
-    fetchData();
-    if (data) setEmpty(false);
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  //   if (data) setEmpty(false);
+  // }, []);
 
   const publishedHandler = async (e, id) => {
-    // e.preventDefault()
-    const res = await fetch("/api/admin", {
-      method: "PUT",
+    const res = await fetch(`/api/admin/${id}`, {
+      method: "PATCH",
       body: JSON.stringify(id),
       headers: { "Content-Type": "application/json" },
     });
@@ -52,14 +49,13 @@ function AdminMain() {
     }
   };
 
-  console.log({ data });
-  // if(!data) return
+  // console.log({ data });
   return (
     // <>
     <div className={styles.container}>
-      {data ? (
+      {profiles.length ? (
         <>
-          {data.map((item) => (
+          {profiles.map((item) => (
             <div className={styles.wrapper} key={item._id}>
               <h3> {item.article} </h3>
               <p> {item.description} </p>
@@ -78,11 +74,11 @@ function AdminMain() {
             </div>
           ))}
         </>
-      ) : null}
+      ) : <p className={styles.empty}> هیچ آگهی برای انتشار وجود ندارد </p>}
 
-      {!data.length ? (
+      {/* {!data.length ? (
         <p className={styles.empty}> هیچ آگهی برای انتشار وجود ندارد </p>
-      ) : null}
+      ) : null} */}
       <Toaster />
     </div>
 
