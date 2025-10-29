@@ -16,9 +16,9 @@ function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`/api/profile/edit/${profileId}`, {
-        method: "POST",
-        body: JSON.stringify(profileId),
-        headers: { "Content-Type": "application/json" },
+        method: "GET",
+        // body: JSON.stringify(profileId),
+        // headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
       //   console.log(data);

@@ -3,14 +3,20 @@ import React from "react";
 import styles from "./DetailsAside.module.scss";
 import { MdRealEstateAgent } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
-import { PiShareNetwork } from "react-icons/pi";
 
 import { FaCalendarCheck } from "react-icons/fa6";
 import { icons } from "@/constants/icons";
 import SharingButton from "./SharingButton";
+import connectDB from "@/utils/connectDB";
+import Client from "@/models/Client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/authOptions";
+import PublishButton from "@/elements/PublishButton";
+import Link from "next/link";
 
-function DetailsAside({
+async function DetailsAside({
   intendedProfile: {
+    _id,
     firm,
     phoneNumber,
     category,
@@ -19,9 +25,12 @@ function DetailsAside({
     constructionDate,
   },
 }) {
-  // console.log(intendedProfile);
-  // const { firm, phoneNumber, category, article, price, constructionDate } =
-  //   intendedProfile;
+  await connectDB();
+
+  const session = await getServerSession(authOptions);
+  console.log({ session });
+
+  const client = await Client.findOne({ email: session.user.email });
 
   return (
     <div className={styles.container}>
@@ -56,6 +65,12 @@ function DetailsAside({
           </span>
           <span> {constructionDate} </span>
         </div>
+      </div>
+
+      <div className={styles.publish}>
+        <Link href="/admin">
+          <PublishButton id={_id} />
+        </Link>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ async function MyAdv() {
   console.log(session);
   if (!session) redirect("/signin");
   const { email } = session.user;
+  const customer = await Client.findOne({email})
   const [client] = await Client.aggregate([
     { $match: { email } },
     { $lookup: {
@@ -24,7 +25,7 @@ async function MyAdv() {
   console.log(client.clientProfiles)
   const profiles = JSON.parse(JSON.stringify(client.clientProfiles))
 
-  return <MyAdvPage email={email} profiles={profiles}/>;
+  return <MyAdvPage email={email} profiles={profiles} role={customer.role}/>;
 }
 
 export default MyAdv;

@@ -1,3 +1,4 @@
+import Client from '@/models/Client';
 import AddAdvPage from '@/templates/AddAdvPage'
 import { authOptions } from '@/utils/authOptions';
 import { getServerSession } from 'next-auth';
@@ -9,8 +10,9 @@ async function AddAdv() {
     console.log(session);
     if(!session) redirect("/signin")
     const email = session?.user.email;
+    const client = await Client.findOne({email})
   return (
-    <AddAdvPage email={email}/>
+    <AddAdvPage email={email} role={client.role}/>
   )
 }
 

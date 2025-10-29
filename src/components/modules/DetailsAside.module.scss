@@ -51,9 +51,9 @@
 .category {
     display: flex;
     gap: 5px;
-    span:first-child {
-        // margin-top: px;
-    }
+    // span:first-child {
+    //     // margin-top: px;
+    // }
 
 
 }
@@ -67,6 +67,19 @@
     }
 }
 
+.publish {
+    // @include flex-center();
+    // a, button {
+    //     width: 100%;
+    // }
+    a {
+        @include flex-center();
+    }
+    
+    button {
+        width: 100%;
+    }
+}
 
 @include laptop {
     .container {

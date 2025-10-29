@@ -76,7 +76,7 @@
     display: flex;
     gap: 25px;
 
-    button {
+    .edit {
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -92,7 +92,8 @@
         -o-border-radius: 5px;
         font-size: 1rem;
         height: 40px;
-
+        border: 2px solid #00C853;
+        color: #00C853;
     }
     
     a {
@@ -105,19 +106,19 @@
             margin-top: 7px;
         }
     }
-
+    
     .edit {
-        border: 2px solid #00C853;
-        color: #00C853;
+        // border: 2px solid #00C853;
+        // color: #00C853;
     }
 
     .delete {
-        border: 2px solid #E53935;
-        color: #E53935;
+    //     border: 2px solid #E53935;
+    //     color: #E53935;
 
-        span:last-child {
-            margin-top: 8px;
-        }
+    //     span:last-child {
+    //         margin-top: 8px;
+    //     }
     }
 }
 

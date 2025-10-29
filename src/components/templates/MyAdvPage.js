@@ -6,7 +6,7 @@ import styles from "@/templates/DashbordPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
 import MyAdvPart from "@/modules/MyAdvPart";
 
-function MyAdvPage({ email, profiles }) {
+function MyAdvPage({ email, profiles, role }) {
   const [data, setData] = useState(profiles)
   console.log(data) 
     const fetchData = async () => {
@@ -22,11 +22,12 @@ function MyAdvPage({ email, profiles }) {
     return (
   <div className={styles.container}>
         <div className={styles.aside}>
-          <DashbordAside email={email}/>
+          <DashbordAside email={email} role={role}/>
         </div>
 
         <div className={styles.main}>
-          <MyAdvPart data={data} setData={setData} />
+          {/* <MyAdvPart profiles={profiles} setData={setData} /> */}
+          <MyAdvPart profiles={profiles} />
         </div>
       </div>
     );

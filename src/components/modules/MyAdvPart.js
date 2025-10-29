@@ -21,33 +21,15 @@ import Link from "next/link";
 import Loader from "./Loader";
 import { icons } from "@/constants/icons";
 
-function MyAdvPart({ data, setData }) {
-  const [loading, setLoading] = useState(false);
-  console.log({ data });
+function MyAdvPart({ profiles }) {
+  // const [loading, setLoading] = useState(false);
+  // console.log({ data });
 
-  const deleteHandler = async (e, item) => {
-    setLoading(true);
-    // e.preventDefault()
-    const res = await fetch(`/api/profile/delete/${item._id}`, {
-      method: "DELETE",
-    });
-    const information = await res.json();
-    setLoading(false);
-    if (res.status === 200) {
-      toast.success(information.message);
-      // router.refresh()
-      const newData = data.filter((x) => x._id !== item._id);
-      setData(newData);
-    } else {
-      toast.error(information.error);
-    }
-  };
-
+  // const router = useRouter()
 
   return (
     <div className={styles.container}>
-      {data
-        ? data?.map((item) => (
+      {profiles.map((item) => (
             <div className={styles.wrapper} key={item._id}>
               <div className={styles.adv}>
                 <div className={styles.type}>
@@ -87,27 +69,20 @@ function MyAdvPart({ data, setData }) {
                     </span>
                   </button>
                 </Link>
-                {loading ? (
-                  <Loader loading={loading}/>
-                ) : (
-                  <button
-                    className={styles.delete}
-                    onClick={(e) => deleteHandler(e, item)}
-                  >
-                    <span> حذف آگهی </span>
-                    <span>
-                      {" "}
-                      <AiOutlineDelete size={18} />{" "}
-                    </span>
-                  </button>
-                )}
+
+                <DeleteButton
+                  type={"آگهی من"}
+                  item={item}
+                  // profiles={profiles}
+                  // setData={setData}
+                />
               </div>
             </div>
           ))
-        : null}
+  }
 
       <Toaster />
-      {!data.length ? (
+      {!profiles.length ? (
         <div className={styles.none}>
           <p> هیچ آگهی ثبت نکرده اید </p>
         </div>

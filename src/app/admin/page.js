@@ -8,6 +8,11 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
+export const metadata = {
+  title: "پنل ادمین املاک | پروژه آزمایشی",
+  description: "سایت خرید و فروش املاک",
+};
+
 async function Admin() {
   const session = await getServerSession(authOptions)
   console.log(session)

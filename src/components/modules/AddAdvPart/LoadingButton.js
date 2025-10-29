@@ -8,8 +8,10 @@ import { ColorRing } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-function LoadingButton({ data, value, handler, loading }) {
+function LoadingButton({ value, handler, loading }) {
+  // const router = useRouter()
   return (
     <>
       {loading ? (
@@ -17,11 +19,11 @@ function LoadingButton({ data, value, handler, loading }) {
           <Loader />
         </div>
       ) : value === "ویرایش" ? (
-        <Link href="/dashbord/my-adv" className={styles.link}>
-          <button type="submit" className={styles.register} onClick={handler}>
+        // <Link href="/dashbord/my-adv" className={styles.link}>
+          <button  className={styles.register} onClick={handler}>
             {value} آگهی
           </button>
-        </Link>
+        // </Link>
       ) : (
         <button type="submit" className={styles.register} onClick={handler}>
           {value} آگهی

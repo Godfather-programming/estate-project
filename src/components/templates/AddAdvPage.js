@@ -12,8 +12,9 @@ import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
 import toast from "react-hot-toast";
 import { e2p } from "@/utils/replaceNumber";
+import { useSession } from "next-auth/react";
 
-function AddAdvPage({ email }) {
+function AddAdvPage({ email, role }) {
   console.log(email);
   const date = new Date();
   const time = Intl.DateTimeFormat("fa").format(date);
@@ -71,10 +72,13 @@ function AddAdvPage({ email }) {
     }
   };
 
+  // const session = useSession()
+  // console.log({session})
+
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
-        <DashbordAside email={email} />
+        <DashbordAside email={email} role={role}/>
       </div>
 
       <div className={styles.main}>

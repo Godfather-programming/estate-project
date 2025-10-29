@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 function ProfileEditPage({ data, profileId, email }) {
   console.log(data);
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [information, setInformation] = useState({
     _id: data._id,
     article: data.article,
@@ -53,8 +54,9 @@ function ProfileEditPage({ data, profileId, email }) {
   };
 
   const editHandler = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
+    setLoading(true)
     const res = await fetch(`/api/profile/edit/${profileId}`, {
       method: "PUT",
       body: JSON.stringify({ information }),
@@ -62,9 +64,11 @@ function ProfileEditPage({ data, profileId, email }) {
     });
     const data = await res.json();
     console.log(data);
+    setLoading(false)
     if(res.status === 200) {
       toast.success(data.message)
       // router.refresh()
+      router.push("/dashbord/my-adv")
     } else {
       return toast.error(data.error)
     }
@@ -95,6 +99,7 @@ function ProfileEditPage({ data, profileId, email }) {
               <Dates data={information} setData={setInformation} />
 
               <LoadingButton
+                loading={loading}
                 data={information}
                 value="ویرایش"
                 handler={editHandler}

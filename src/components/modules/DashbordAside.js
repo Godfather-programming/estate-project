@@ -11,7 +11,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
 function DashbordAside({ email, role }) {
-  console.log({ email, role });
+  // console.log({ email, role });
   // const [admin, setAdmin] = useState(null);
 
   // const fetchClient = async () => {

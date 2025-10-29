@@ -34,13 +34,26 @@
 
     }
 
-    button {
+    .line {
+        height: 2px;
+        background-color: $blue;
+        display: block;
+    }
+}
+
+.options {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+    
+    button, a {
         margin-top: 20px;
-        padding: 6px 0;
+        padding: 10px;
         cursor: pointer;
         border: none;
         outline: none;
-        width: 60px;
+        width: fit-content;
         color: #fafafa;
         background-color: #4CAF50;
         border-radius: 5px;
@@ -50,12 +63,26 @@
         -o-border-radius: 5px;
     }
 
-    .line {
-        height: 2px;
-        background-color: $blue;
-        display: block;
+    button:first-child {
+        width: 60px;
     }
-     
+
+    a {
+        background-color: #2196F3;
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    button:last-child {
+        background-color: #EF5350;
+        display: flex;
+        gap: 5px;
+        padding: 5px 10px;
+        // margin-top: 5px;
+        span {
+            margin-top: 5px;
+        }
+    }
 }
 
 .empty {
