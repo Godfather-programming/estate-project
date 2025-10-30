@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "@/modules/Loader";
 
-function DeleteButton({ type, item }) {
+function DeleteButton({ type, item, toast }) {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -23,8 +23,10 @@ function DeleteButton({ type, item }) {
     if (res.status === 200) {
       toast.success(information.message);
       router.refresh();
-      // const newData = data.filter((x) => x._id !== item._id);
-      // setData(newData);
+      // if(type ==="ادمین") {
+      //   window.location.reload()
+      // }
+
     } else {
       toast.error(information.error);
     }
@@ -32,7 +34,7 @@ function DeleteButton({ type, item }) {
   return (
     <>
       {loading ? (
-        <Loader loading={loading} type={type} />
+        <Loader type={type} />
       ) : (
         <>
           <button
@@ -40,12 +42,11 @@ function DeleteButton({ type, item }) {
             onClick={(e) => deleteHandler(e, item)}
           >
             <span> حذف آگهی </span>
-            <span>
+            <span className={styles.trash}>
               {" "}
               <AiOutlineDelete size={18} />{" "}
             </span>
           </button>
-          <Toaster />
         </>
       )}
     </>

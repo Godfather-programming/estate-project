@@ -1,6 +1,6 @@
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 
 import styles from "@/modules/MyAdvPart.module.scss";
 import Profile from "@/models/Profile";
@@ -15,17 +15,13 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { e2p, sp } from "@/utils/replaceNumber";
 import DeleteButton from "@/elements/DeleteButton";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import connectDB from "@/utils/connectDB";
 import Link from "next/link";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 import { icons } from "@/constants/icons";
 
 function MyAdvPart({ profiles }) {
-  // const [loading, setLoading] = useState(false);
-  // console.log({ data });
 
-  // const router = useRouter()
 
   return (
     <div className={styles.container}>
@@ -73,6 +69,7 @@ function MyAdvPart({ profiles }) {
                 <DeleteButton
                   type={"آگهی من"}
                   item={item}
+                  toast={toast}
                   // profiles={profiles}
                   // setData={setData}
                 />
@@ -81,12 +78,12 @@ function MyAdvPart({ profiles }) {
           ))
   }
 
-      <Toaster />
       {!profiles.length ? (
         <div className={styles.none}>
           <p> هیچ آگهی ثبت نکرده اید </p>
         </div>
       ) : null}
+      <Toaster />
     </div>
   );
 }

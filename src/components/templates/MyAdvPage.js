@@ -1,24 +1,24 @@
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 
 import styles from "@/templates/DashbordPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
 import MyAdvPart from "@/modules/MyAdvPart";
 
 function MyAdvPage({ email, profiles, role }) {
-  const [data, setData] = useState(profiles)
-  console.log(data) 
-    const fetchData = async () => {
-    const res = await fetch("/api/profile");
-    const inforamtion = await res.json();
-    console.log(inforamtion)
-    setData(inforamtion.profiles)
-  };
-  useEffect(() => {
-    fetchData()
-  }, [])
-  if (data)
+  // const [data, setData] = useState(profiles)
+  // console.log(data) 
+  //   const fetchData = async () => {
+  //   const res = await fetch("/api/profile");
+  //   const inforamtion = await res.json();
+  //   console.log(inforamtion)
+  //   setData(inforamtion.profiles)
+  // };
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
+  // if (data)
     return (
   <div className={styles.container}>
         <div className={styles.aside}>

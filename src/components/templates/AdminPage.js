@@ -36,7 +36,7 @@ async function AdminPage({ email }) {
         ) : (
           <p className={styles.empty}> هیچ آگهی در انتظار تاییدی وجود ندارد </p>
         )} */}
-        <AdminMain profiles={profiles}/> 
+        <AdminMain profiles={JSON.parse(JSON.stringify(profiles))}/> 
       </div>
     </div>
   );

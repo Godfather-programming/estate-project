@@ -1,7 +1,7 @@
 @use '../../styles' as *;
 
 .container {
-    min-height: 800px;
+    min-height: 722px;
     display: flex;
     align-items: center;
     // justify-content: center;
@@ -54,7 +54,7 @@
 }
 
 .categories {
-    margin-top: 80px;
+    margin-top: 40px;
     width: 100%;
     display: grid;
     gap: 30px;
@@ -101,20 +101,22 @@
     }
 }
 
+// .wrapper {
+//     width: 100%;
+//     margin-top: 70px;
+//     margin-bottom: 30px;
+// }
+
+
 .wrapper {
-    width: 100%;
-    margin-top: 70px;
-
-}
-
-
-.wrapper div {
-    margin-top: 10px;
+    margin-top: 25px;
     width: 100%;
     display: grid;
     justify-items: space-between;
-    gap: 30px;
+    // gap: 15px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 25px;
+    column-gap: 30px;
 
     .town {
         display: flex;
@@ -128,9 +130,13 @@
         -o-border-radius: 5px;
         width: 100%;
         background-color: $lightBlue;
-        padding: 8px 5px;
+        padding: 5px 5px;
+
+        span:first-child {
+            margin-top: 4px;
+        }
         
-        span {
+        span:last-child {
             @include textStyle($darkBlue, 1rem, 500);
         }
     }
@@ -149,7 +155,7 @@
   }
 
   .wrapper {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 
 }
@@ -171,8 +177,8 @@
     place-items: center;
     }
   
-    .wrapper div {
-        margin-top: 10px;
+    .wrapper {
+        margin-top: 15px;
         gap: 10px;
         grid-template-columns: 1fr 1fr;
 

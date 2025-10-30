@@ -10,10 +10,11 @@ import PublishButton from "@/elements/PublishButton";
 import DeleteButton from "@/elements/DeleteButton";
 
 function AdminMain({ profiles }) {
+
+
   return (
+    // <>
     <div className={styles.container}>
-      {profiles.length ? (
-        <>
           {profiles.map((item) => (
             <div className={styles.wrapper} key={item._id}>
               <h3> {item.article} </h3>
@@ -24,7 +25,7 @@ function AdminMain({ profiles }) {
               </div>
 
               <div className={styles.options}>
-                <PublishButton id={JSON.parse(JSON.stringify(item._id))} />
+                <PublishButton id={JSON.parse(JSON.stringify(item._id))} toast={toast}/>
 
                 <Link href={`/buy-residential/details/${item._id}`}>
                   {" "}
@@ -35,21 +36,19 @@ function AdminMain({ profiles }) {
                 <DeleteButton
                   type="ادمین"
                   item={JSON.parse(JSON.stringify(item))}
+                  toast={toast}
                 />
               </div>
 
               <span className={styles.line}></span>
             </div>
           ))}
-        </>
-      ) : (
-        <p className={styles.empty}> هیچ آگهی برای انتشار وجود ندارد </p>
-      )}
 
-      {/* {!data.length ? (
+
+      {!profiles.length ? (
         <p className={styles.empty}> هیچ آگهی برای انتشار وجود ندارد </p>
-      ) : null} */}
-      <Toaster />
+        ) : null}
+<Toaster />
     </div>
 
     // </>

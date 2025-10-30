@@ -9,7 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Link from "next/link";
 import { types } from "@/constants/types";
-import { cities1, cities2 } from "@/constants/cities";
+import { cities, cities1, cities2 } from "@/constants/cities";
 import { categories } from "@/constants/categories";
 
 function HomePage() {
@@ -36,7 +36,7 @@ function HomePage() {
             className={styles.kind}
           >
             <div className={styles.category}>
-              <Image src={item.src} width={220} height={130} alt={item.title}/>
+              <Image src={item.src} width={220} height={130} alt={item.title} />
               <span> {item.title} </span>
             </div>
           </Link>
@@ -46,23 +46,15 @@ function HomePage() {
       <div className={styles.cities}>
         <h2> شهر های پربازدید </h2>
         <div className={styles.wrapper}>
-          <div>
-            {cities1.map((i, index) => (
-              <div key={index} className={styles.town}>
-                <MdOutlineApartment color="#0500ff" />
-                <span> {i} </span>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            {cities2.map((i, index) => (
-              <div key={index} className={styles.town}>
-                <MdOutlineApartment color="#0500ff" />
-                <span> {i} </span>
-              </div>
-            ))}
-          </div>
+          {cities.map((i, index) => (
+            <div key={index} className={styles.town}>
+              <span>
+                {" "}
+                <MdOutlineApartment color="#0500ff" size={20} />{" "}
+              </span>
+              <span> {i} </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
