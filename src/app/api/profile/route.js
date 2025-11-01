@@ -9,17 +9,8 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  // const session = await getServerSession(authOptions);
-  // if (!session) {
-  //   return NextResponse.json(
-  //     { error: "لطفا ابتدا حساب کاربری ایجاد کنید!" },
-  //     { status: 401 }
-  //   );
-  // }
+
   const session = await getServerSession(req);
-  // const session1 = await getServerSession(authOptions);
-  // console.log({ reqSession: session });
-  // console.log({ authSession: session1 });
   try {
     validationSession();
 
@@ -71,8 +62,8 @@ export async function POST(req) {
 
     const recordedProfile = await Profile.create({
       ...data,
-      price: sp(data.price),
-      phoneNumber: e2p(data.phoneNumber),
+      // price: sp(data.price),
+      // phoneNumber: e2p(data.phoneNumber),
       userId: new Types.ObjectId(client._id),
     });
 

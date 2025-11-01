@@ -24,6 +24,12 @@
     }
 }
 
+.seo {
+    p {
+        margin-bottom: 10px;
+    }
+}
+
 @include tablet {
     .explanations {
         textarea {

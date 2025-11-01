@@ -33,7 +33,7 @@ function BuyResidnetialMain({ finalData }) {
             </span>
             <span> {item.address} </span>
           </div>
-          <p className={styles.price}> {item.price} تومان </p>
+          <p className={styles.price}> {sp(item.price)} تومان </p>
           <Link
             href={`/buy-residential/details/${item._id}`}
             className={styles.visit}

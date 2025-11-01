@@ -12,10 +12,7 @@ import Client from "@/models/Client";
 import Profile from "@/models/Profile";
 
 
-async function AdminPage({ email }) {
-  // const session = await getServerSession(authOptions);
-  // console.log(session);
-  // const { email } = session.user;
+async function AdminPage({ email, }) {
 
   await connectDB();
 

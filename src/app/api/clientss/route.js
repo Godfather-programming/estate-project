@@ -1,23 +1,25 @@
 import Client from "@/models/Client";
 import { verifyPassword } from "@/utils/auth";
+import { authOptions } from "@/utils/authOptions";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
-  const email = await req.json();
+export async function GET() {
+  try {
+    const session = await getServerSession(authOptions);
+    const client = await Client.findOne({ email: session.user.email });
 
-  const client = await Client.findOne({ email });
-//   console.log(client)
-//   a1b2b3a4s5duck
-
-  const adminPassword = "123nemat"
-
-  const isValid = await verifyPassword(adminPassword, client.password)
-  console.log(isValid)
-
-  return NextResponse.json(
-    { message: "اطلاعات کاربر با موفقیت دریافت شد", client, valid: isValid },
-    {
-      status: 200,
-    }
-  );
+    return NextResponse.json(
+      { message: "اطلاعات کاربر با موفقیت دریافت شد", role: client.role },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "مشکلی در سرور رخ داده است!" },
+      { status: 500 }
+    );
+  }
 }

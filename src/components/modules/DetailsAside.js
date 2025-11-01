@@ -13,6 +13,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import PublishButton from "@/elements/PublishButton";
 import Link from "next/link";
+import { e2p, sp } from "@/utils/replaceNumber";
 
 async function DetailsAside({
   intendedProfile: {
@@ -26,6 +27,8 @@ async function DetailsAside({
   },
 }) {
   await connectDB();
+
+  const date = new Date(constructionDate).toLocaleDateString("fa-IR")
 
   const session = await getServerSession(authOptions);
   console.log({ session });
@@ -46,7 +49,7 @@ async function DetailsAside({
             {" "}
             <AiOutlinePhone size={18} />{" "}
           </span>{" "}
-          <span> {phoneNumber} </span>{" "}
+          <span> {e2p(phoneNumber)} </span>{" "}
         </div>
       </div>
 
@@ -57,13 +60,13 @@ async function DetailsAside({
           {" "}
           <span>{icons[category]}</span> <span> {article} </span>
         </div>
-        <p> {price} تومان </p>
+        <p> {sp(price)} تومان </p>
         <div className={styles.Date}>
           <span>
             {" "}
             <FaCalendarCheck size={18} color="#0500ff" />{" "}
           </span>
-          <span> {constructionDate} </span>
+          <span> {date} </span>
         </div>
       </div>
 

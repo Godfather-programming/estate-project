@@ -52,7 +52,7 @@ function MyAdvPart({ profiles }) {
                   </span>
                   <span>{item.address}</span>
                 </div>
-                <p> {item.price} تومان </p>
+                <p> {sp(item.price)} تومان </p>
               </div>
 
               <div className={styles.buttons}>

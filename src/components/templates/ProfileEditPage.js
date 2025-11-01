@@ -12,8 +12,9 @@ import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
 import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-function ProfileEditPage({ data, profileId, email }) {
-  console.log(data);
+function ProfileEditPage({ data, profileId, email, role }) {
+  // console.log(data);
+  console.log({role})
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [information, setInformation] = useState({
@@ -31,23 +32,7 @@ function ProfileEditPage({ data, profileId, email }) {
   });
   console.log(information);
 
-  //   const [data, setData] = useState([]);
-  // const {profileId} = useParams()
-  // console.log(profileId)
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const res = await fetch(`/api/profile/edit/${profileId}`, {
-  //         method: "POST",
-  //         body: JSON.stringify(profileId),
-  //         headers: {"Content-Type": "application/json"}
-  //       });
-  //       const data = await res.json();
-  //       console.log(data)
-  //       setData(data.intendedProfile);
-  //     };
-  //     fetchData();
-  //   }, []);
-  //   console.log(data);
+
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setInformation({ ...information, [name]: value });
@@ -78,7 +63,7 @@ function ProfileEditPage({ data, profileId, email }) {
     return (
       <div className={styles.container}>
         <div className={styles.aside}>
-          <DashbordAside email={email}/>
+          <DashbordAside email={email} role={role}/>
         </div>
 
         <div className={styles.main}>

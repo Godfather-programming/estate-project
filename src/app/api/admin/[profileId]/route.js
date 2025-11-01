@@ -27,7 +27,6 @@ export async function PATCH(req, context) {
       );
     }
 
-
     await connectDB();
 
     const id = context.params.profileId;
@@ -61,4 +60,40 @@ export async function PATCH(req, context) {
       { status: 500 }
     );
   }
+}
+
+
+
+export async function GET(req, context) {
+    validationSession();
+    
+    await connectDB()
+
+  //   const session = await getServerSession(authOptions);
+  //   console.log({session})
+  //   console.log({session})
+  //   console.log({session})
+
+  // const client = await Client.findOne({ email: session?.user.email });
+  // if (!client) {
+  //   return NextResponse.json(
+  //     { error: "حساب کاربری یافت نشد!" },
+  //     { status: 404 }
+  //   );
+  // }
+
+  // if (client.role !== "ADMIN") {
+  //   return NextResponse.json(
+  //     { error: "شما مجاز به انتشار آگهی نیستید!" },
+  //     { status: 403 }
+  //   );
+  // }
+
+const id = context.params.profileId
+
+  const intendedSeo = await Profile.find({_id: id}).select("SEO")
+  const SEO = intendedSeo.map(item => item.SEO)
+  console.log({SEO})
+
+  return NextResponse.json({SEO}, {status: 200})
 }

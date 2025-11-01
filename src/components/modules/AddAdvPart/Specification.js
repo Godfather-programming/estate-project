@@ -3,7 +3,21 @@ import React from "react";
 import styles from "@/AddAdvPart/Specification.module.scss";
 import Input from "@/elements/Input";
 
-function Specifiation({ data, changeHandler }) {
+function Specifiation({ data, setData, changeHandler }) {
+  const { article, explanations, address, phoneNumber, price, firm, SEO } =
+    data;
+
+  const changeSEOHandler = (e) => {
+    const { name, value } = e.target;
+    console.log({name,value})
+
+    const newSeo = {...data.SEO, [name]: value}
+
+    // newSeo[name] = value
+
+    setData({...data, SEO: newSeo})
+
+  };
   return (
     <>
       <Input
@@ -31,14 +45,14 @@ function Specifiation({ data, changeHandler }) {
       />
       <Input
         label="شماره تماس"
-        type="text"
+        type="number"
         name="phoneNumber"
         value={data.phoneNumber}
         changeHandler={changeHandler}
       />
       <Input
         label="قیمت(تومان)"
-        type="text"
+        type="number"
         name="price"
         value={data.price}
         changeHandler={changeHandler}
@@ -50,6 +64,32 @@ function Specifiation({ data, changeHandler }) {
         value={data.firm}
         changeHandler={changeHandler}
       />
+      {/* {SEO.map((item) => ( */}
+        <div className={styles.seo}>
+          <p> اطلاعات SEO</p>
+          <Input
+            label="عنوان SEO"
+            type="text"
+            name="title"
+            value={SEO.title}
+            changeHandler={changeSEOHandler}
+          />
+          <Input
+            label="توضیحات SEO"
+            type="text"
+            name="description"
+            value={SEO.description}
+            changeHandler={changeSEOHandler}
+          />
+          <Input
+            label="شماره تلفن SEO"
+            type="number"
+            name="phoneCall"
+            value={SEO.phoneCall}
+            changeHandler={changeSEOHandler}
+          />
+        </div>
+      {/* ))} */}
     </>
   );
 }

@@ -16,8 +16,8 @@ import { useSession } from "next-auth/react";
 
 function AddAdvPage({ email, role }) {
   console.log(email);
-  const date = new Date();
-  const time = Intl.DateTimeFormat("fa").format(date);
+  // const date = new Date();
+  // const time = Intl.DateTimeFormat("fa").format(date);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
@@ -28,7 +28,8 @@ function AddAdvPage({ email, role }) {
     price: "",
     firm: "",
     category: "",
-    constructionDate: time,
+    constructionDate: new Date(),
+    SEO: [{title: ""}, {description: ""}, {phoneCall: ""}],
     amenities: [],
     rules: [],
     published: "false",
@@ -72,9 +73,6 @@ function AddAdvPage({ email, role }) {
     }
   };
 
-  // const session = useSession()
-  // console.log({session})
-
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
@@ -88,7 +86,7 @@ function AddAdvPage({ email, role }) {
 
         <div className={styles.wrapper}>
           <form className={styles.form}>
-            <Specifiation data={data} changeHandler={changeHandler} />
+            <Specifiation data={data} setData={setData} changeHandler={changeHandler} />
 
             <Categories data={data} changeHandler={changeHandler} />
 

@@ -9,21 +9,21 @@ import { dateStyle } from "@/constants/styles";
 function Dates({ data, setData }) {
   const dateHandler = (e) => {
     const date = new Date(e);
-    const time = Intl.DateTimeFormat("fa").format(date);
-    console.log(data.constructionDate)
-    setData({ ...data, constructionDate: time });
+    // const time = Intl.DateTimeFormat("fa").format(date);
+    // console.log(data.constructionDate)
+    setData({ ...data, constructionDate: date });
     console.log(data.constructionDate)
   };
-  // const date = new Date()
-  // const time = Intl.DateTimeFormat("fa").format(date)
-  // console.log(time)
+
+  const date1 = new Date(data.constructionDate).toLocaleDateString("fa-IR")
+  console.log({date1})
   return (
     <div style={{ marginTop: "20px" }} className={styles.date}>
       <p> تاریخ ساخت </p>
       <DatePicker
         calendar={persian}
         locale={persian_fa}
-        placeholder={data.constructionDate}
+        placeholder={date1}
         value={data.constructionDate}
         onChange={dateHandler}
         calendarPosition="bottom-right"

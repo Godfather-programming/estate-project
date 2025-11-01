@@ -1,7 +1,4 @@
-// import Client from '@/models/Client'
-// import { authOptions } from '@/utils/authOptions'
-// import connectDB from '@/utils/connectDB'
-// import { getServerSession } from 'next-auth'
+
 import React from 'react'
 import DashbordPage from '@/templates/DashbordPage'
 

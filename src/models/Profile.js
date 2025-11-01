@@ -15,11 +15,11 @@ const profileSchema = new Schema(
       required: true,
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       required: true,
     },
     price: {
-      type: String, // must be Number
+      type: Number, 
       required: true,
     },
     firm: {
@@ -30,8 +30,12 @@ const profileSchema = new Schema(
       type: String,
       required: true,
     },
+    SEO: {
+      type: {title: String, description: String, phoneCall: Number},
+      default: {}
+    }, 
     constructionDate: {
-      type: String,
+      type: Date,
       required: true,
     },
     // amenities: [{text: String}],

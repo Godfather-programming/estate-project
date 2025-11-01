@@ -3,7 +3,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 35px;
     margin-bottom: 50px;
 }
 
@@ -80,6 +80,33 @@
     }
 }
 
+.seo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+        margin-top: 15px;
+    }
+
+    .data {
+        display: flex;
+        gap: 10px;
+        
+        span {
+        padding: 8px;
+        // width: 100px;
+        background-color: #26C6DA;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+}
+    }
+
+}
+
 .line {
     height: 2px;
     background-color: $blue;
@@ -107,6 +134,7 @@
     }
 
     .wrapper {
+        // margin-top: 25px;
         .charactristics {
             text-align: center;
             justify-content: center;
@@ -116,6 +144,15 @@
     .options {
         button:first-child {
             width: 100px;
+        }
+    }
+
+    .seo {
+        align-items: center;
+        text-align: center;
+        .data {
+            align-items: center;
+            justify-content: center;
         }
     }
 

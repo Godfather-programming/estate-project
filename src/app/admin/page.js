@@ -17,6 +17,7 @@ async function Admin() {
   const session = await getServerSession(authOptions)
   console.log(session)
   if(!session) redirect("/signin")
+    
   await connectDB()
 
   const client = await Client.findOne({email: session.user.email})
@@ -27,7 +28,7 @@ async function Admin() {
   
 
   return (
-    <AdminPage email={client.email}/>
+    <AdminPage email={client.email} />
   )
 }
 
