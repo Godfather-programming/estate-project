@@ -33,18 +33,20 @@ export const generateMetadata = async (props) => {
 
   await connectDB();
 
-  const resSeo = await fetch(`http://localhost:3000/api/admin/${profileId}`);
-  const {SEO} = await resSeo.json();
+  const resSeo = await fetch(`http://localhost:3000/api/admin/${profileId}`, {
+    method: "POST",
+    body: JSON.stringify(profileId),
+    headers: {"Content-Type": "application/json"}
+  });
+  const { SEO } = await resSeo.json();
   // const seo = SEO[0]
   // console.log(seo)
 
   return {
     title: SEO[0].title,
     description: SEO[0].description,
-    other: {phoneCall: SEO[0].phoneCall}
-  }
-
-
+    other: { phoneCall: SEO[0].phoneCall },
+  };
 };
 
 // const desiredProfile = await Profile.findOne({ _id: profileId });

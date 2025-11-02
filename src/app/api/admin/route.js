@@ -6,30 +6,32 @@ import { validationSession } from "@/utils/session";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
-    //   validationSession();
+// check the type of request(POST)
+
+export async function POST(req) {
+      validationSession();
     
     await connectDB()
 
-//     const session = await getServerSession(authOptions);
-//     console.log({session})
-//     console.log({session})
-//     console.log({session})
+    const session = await getServerSession(authOptions);
+    console.log({session})
+    console.log({session})
+    console.log({session})
 
-//   const client = await Client.findOne({ email: session?.user.email });
-//   if (!client) {
-//     return NextResponse.json(
-//       { error: "حساب کاربری یافت نشد!" },
-//       { status: 404 }
-//     );
-//   }
+  const client = await Client.findOne({ email: session?.user.email });
+  if (!client) {
+    return NextResponse.json(
+      { error: "حساب کاربری یافت نشد!" },
+      { status: 404 }
+    );
+  }
 
-//   if (client.role !== "ADMIN") {
-//     return NextResponse.json(
-//       { error: "شما مجاز به انتشار آگهی نیستید!" },
-//       { status: 403 }
-//     );
-//   }
+  if (client.role !== "ADMIN") {
+    return NextResponse.json(
+      { error: "شما مجاز به انتشار آگهی نیستید!" },
+      { status: 403 }
+    );
+  }
 
 
   const profiles = await Profile.find().select("SEO")
