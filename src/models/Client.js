@@ -14,10 +14,6 @@ const clientSchema = new Schema({
     type: String,
     default: "USER",
   },
-  // repeatedPassword: {
-  //   type: String,
-  //   required: true,
-  // },
   createdAt: {
     type: Date,
     default: () => Date.now(),
