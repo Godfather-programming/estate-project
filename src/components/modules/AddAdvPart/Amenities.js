@@ -1,8 +1,6 @@
-import React from "react";
-
-import styles from "@/AddAdvPart/Amenities.module.scss";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineAddToPhotos } from "react-icons/md";
+import styles from "@/AddAdvPart/Amenities.module.scss";
 
 function Amenities({ data, setData }) {
   const changeAmenitiesHandler = (e, index) => {
@@ -16,7 +14,6 @@ function Amenities({ data, setData }) {
     e.preventDefault();
     const eliminatedAmenitie = data.amenities.splice(index, 1);
     setData({ ...data });
-    console.log(data.amenities);
   };
 
   const addAmenitiesHandler = (e) => {

@@ -1,8 +1,6 @@
-import React from "react";
-
-import styles from "@/AddAdvPart/Amenities.module.scss";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineAddToPhotos } from "react-icons/md";
+import styles from "@/AddAdvPart/Amenities.module.scss";
 
 function Rules({ data, setData }) {
   const changeRulesHandler = (e, index) => {

@@ -1,26 +1,25 @@
 @use '../../../styles' as *;   
    
    
-   .explanations {
+.explanations {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-        label {
-            @include textStyle($darkBlue, 1rem, 400)
-        }
-
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        textarea {
-            padding: 10px;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
-            border: 1px dashed;
-            height: 100px;
-            width: 200px;
+    label {
+        @include textStyle($darkBlue, 1rem, 400)
+    }
+    
+    textarea {
+        padding: 10px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        border: 1px dashed;
+        height: 100px;
+        width: 200px;
     }
 }
 

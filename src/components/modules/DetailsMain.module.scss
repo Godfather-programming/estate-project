@@ -10,16 +10,11 @@
 .name {
     h1 {
         @include textStyle($darkBlue, 1.5rem, 500);
-        // color: $darkBlue;
-        // font-weight: 500;
     }
     .place {
         margin-top: 10px;
         display: flex;
-         
-        // span:first-child {
-        //     // margin-bottom: 100px;
-        // }
+        
         span:last-child {
             margin-right: 2px;
         }
@@ -36,14 +31,9 @@
     }
 }
 
-
-
-
-
 @include laptop {
     .container {
         align-items: center;
-        // justify-content: center;
         text-align: center;
     }
 

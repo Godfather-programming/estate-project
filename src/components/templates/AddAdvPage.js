@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-
+import { useState } from "react";
+import toast from "react-hot-toast";
 import styles from "@/templates/AddAdvPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
 import Specifiation from "@/modules/AddAdvPart/Specification";
@@ -10,15 +10,8 @@ import Amenities from "@/modules/AddAdvPart/Amenities";
 import Rules from "@/modules/AddAdvPart/Rules";
 import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
-import toast from "react-hot-toast";
-import { e2p } from "@/utils/replaceNumber";
-import { useSession } from "next-auth/react";
 
 function AddAdvPage({ email, role }) {
-  console.log(email);
-  // const date = new Date();
-  // const time = Intl.DateTimeFormat("fa").format(date);
-
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     article: "",
@@ -29,7 +22,7 @@ function AddAdvPage({ email, role }) {
     firm: "",
     category: "",
     constructionDate: new Date(),
-    SEO: [{title: ""}, {description: ""}, {phoneCall: ""}],
+    SEO: { title: "", description: "", phoneCall: "" },
     amenities: [],
     rules: [],
     published: "false",
@@ -54,20 +47,20 @@ function AddAdvPage({ email, role }) {
     setLoading(false);
     if (res.status === 200) {
       toast.success(inforamtion.message);
-      // setData({
-      //   article: "",
-      //   explanations: "",
-      //   address: "",
-      //   phoneNumber: "",
-      //   price: "",
-      //   firm: "",
-      //   category: "",
-      //   constructionDate: time,
-      //   amenities: [],
-      //   rules: [],
-      //   published: "false",
-      //   email
-      // });
+      setData({
+        article: "",
+        explanations: "",
+        address: "",
+        phoneNumber: "",
+        price: "",
+        firm: "",
+        category: "",
+        constructionDate: time,
+        amenities: [],
+        rules: [],
+        published: "false",
+        email,
+      });
     } else {
       toast.error(inforamtion.error);
     }
@@ -76,7 +69,7 @@ function AddAdvPage({ email, role }) {
   return (
     <div className={styles.container}>
       <div className={styles.aside}>
-        <DashbordAside email={email} role={role}/>
+        <DashbordAside email={email} role={role} />
       </div>
 
       <div className={styles.main}>
@@ -86,7 +79,11 @@ function AddAdvPage({ email, role }) {
 
         <div className={styles.wrapper}>
           <form className={styles.form}>
-            <Specifiation data={data} setData={setData} changeHandler={changeHandler} />
+            <Specifiation
+              data={data}
+              setData={setData}
+              changeHandler={changeHandler}
+            />
 
             <Categories data={data} changeHandler={changeHandler} />
 

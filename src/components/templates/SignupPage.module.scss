@@ -7,13 +7,10 @@
     flex-direction: column;
     height: 90vh;
     
-
     h2 {
         @include textStyle($darkBlue, 1.8rem, 500);
-        // margin-bottom: 10px;
     }
-
-  }
+}
   
 .form {
   width: 250px;
@@ -45,7 +42,6 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
   }
-
 }
 
 .situation {
@@ -64,5 +60,4 @@
     position: relative;
     left: 2px;
   }
-
 }

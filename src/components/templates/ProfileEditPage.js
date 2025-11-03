@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import styles from "@/templates/AddAdvPage.module.scss";
 import DashbordAside from "@/modules/DashbordAside";
 import Specifiation from "@/modules/AddAdvPart/Specification";
@@ -9,14 +11,10 @@ import Amenities from "@/modules/AddAdvPart/Amenities";
 import Rules from "@/modules/AddAdvPart/Rules";
 import Dates from "@/modules/AddAdvPart/Dates";
 import LoadingButton from "@/modules/AddAdvPart/LoadingButton";
-import { useParams, useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 function ProfileEditPage({ data, profileId, email, role }) {
-  // console.log(data);
-  console.log({role})
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [information, setInformation] = useState({
     _id: data._id,
     article: data.article,
@@ -27,11 +25,10 @@ function ProfileEditPage({ data, profileId, email, role }) {
     firm: data.firm,
     category: data.category,
     constructionDate: data.constructionDate,
+    SEO: data.SEO,
     amenities: data.amenities,
     rules: data.rules,
   });
-  console.log(information);
-
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -40,30 +37,26 @@ function ProfileEditPage({ data, profileId, email, role }) {
 
   const editHandler = async (e) => {
     e.preventDefault();
-
-    setLoading(true)
+    setLoading(true);
     const res = await fetch(`/api/profile/edit/${profileId}`, {
       method: "PUT",
       body: JSON.stringify({ information }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
-    console.log(data);
-    setLoading(false)
-    if(res.status === 200) {
-      toast.success(data.message)
-      // router.refresh()
-      router.push("/dashbord/my-adv")
+    setLoading(false);
+    if (res.status === 200) {
+      toast.success(data.message);
+      router.push("/dashbord/my-adv");
     } else {
-      return toast.error(data.error)
+      return toast.error(data.error);
     }
-    
   };
   if (data)
     return (
       <div className={styles.container}>
         <div className={styles.aside}>
-          <DashbordAside email={email} role={role}/>
+          <DashbordAside email={email} role={role} />
         </div>
 
         <div className={styles.main}>
@@ -73,7 +66,11 @@ function ProfileEditPage({ data, profileId, email, role }) {
 
           <div className={styles.wrapper}>
             <form className={styles.form}>
-              <Specifiation data={information} changeHandler={changeHandler} />
+              <Specifiation
+                data={information}
+                changeHandler={changeHandler}
+                setData={setInformation}
+              />
 
               <Categories data={information} changeHandler={changeHandler} />
 

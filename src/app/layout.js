@@ -1,8 +1,5 @@
-import yekanBakh from "@/utils/fonts";
-
 import "./globals.css";
-import Header from "@/layout/Header";
-import Footer from "@/layout/Footer";
+import yekanBakh from "@/utils/fonts";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import Layout from "@/layout/Layout";
 

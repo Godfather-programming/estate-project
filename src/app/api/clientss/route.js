@@ -1,8 +1,7 @@
-import Client from "@/models/Client";
-import { verifyPassword } from "@/utils/auth";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import Client from "@/models/Client";
+import { authOptions } from "@/utils/authOptions";
 
 export async function GET() {
   try {

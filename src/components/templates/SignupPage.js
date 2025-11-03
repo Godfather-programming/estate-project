@@ -1,33 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
-
-import styles from "@/templates/SignupPage.module.scss";
-import Input from "@/elements/Input";
 import Link from "next/link";
-import { formHandler } from "@/utils/serverFunctions";
 import { useRouter } from "next/navigation";
-import { ColorRing } from "react-loader-spinner";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import styles from "@/templates/SignupPage.module.scss";
 import SigninInput from "@/elements/SigninInput";
 import Loader from "@/modules/Loader";
 
 function SignupPage() {
   const router = useRouter();
 
-  const [information, setIformation] = useState({
+  const [information, setInformation] = useState({
     email: "",
     password: "",
     repeatedPassword: "",
     loading: false,
   });
 
-  // const [loading, setLoading] = useState(false);
-
   const changeHandler = (e) => {
     const { name } = e.target;
     const { value } = e.target;
-    setIformation({ ...information, [name]: value });
+    setInformation({ ...information, [name]: value });
   };
 
   const registerHandler = async (e) => {
@@ -38,7 +32,7 @@ function SignupPage() {
       return;
     }
 
-    setIformation({ ...information, loading: true })
+    setInformation({ ...information, loading: true });
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({
@@ -47,14 +41,11 @@ function SignupPage() {
       }),
       headers: { "Content-Type": "application/json" },
     });
-
     const data = await res.json();
-    setIformation({...information, loading: false})
-    // console.log(res.status);
-    // console.log(data);
+    setInformation({ ...information, loading: false });
 
     if (res.status === 201) {
-      router.push("/signin")
+      router.push("/signin");
     } else {
       toast.error(data.error);
     }
@@ -63,14 +54,7 @@ function SignupPage() {
     <div className={styles.container}>
       <h2> فرم ثبت نام </h2>
 
-      <form
-        className={styles.form}
-        // action={() => {}}
-        // action={async (formData) => {
-        //   await formHandler(formData);
-        //   if (!formHandler.error) console.log(formHandler.error);
-        // }}
-      >
+      <form className={styles.form}>
         <SigninInput
           label="ایمیل"
           type="text"
@@ -94,7 +78,7 @@ function SignupPage() {
         />
 
         {information.loading ? (
-         <Loader />
+          <Loader />
         ) : (
           <button type="submit" onClick={registerHandler}>
             {" "}

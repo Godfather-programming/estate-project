@@ -1,30 +1,16 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import styles from "@/modules/BuyResidentialMain.module.scss";
-import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineApartment } from "react-icons/md";
-import { BsFillHouseHeartFill } from "react-icons/bs";
-import { FaStore } from "react-icons/fa";
-import { PiOfficeChairFill } from "react-icons/pi";
+import Link from "next/link";
 import { MdOutlinePlace } from "react-icons/md";
 import { FiArrowLeftCircle } from "react-icons/fi";
+import styles from "@/modules/BuyResidentialMain.module.scss";
 import { sp } from "@/utils/replaceNumber";
-import Link from "next/link";
+import { icons } from "@/src/constants/icons";
 
 function BuyResidnetialMain({ finalData }) {
-
-
   return (
     <div className={styles.container}>
       {finalData.map((item) => (
         <div className={styles.wrapper} key={item._id}>
-          <span className={styles.icon}>
-            {item.category === "ویلا" ? <BsFillHouseHeartFill /> : null}
-            {item.category === "آپارتمان" ? <MdOutlineApartment /> : null}
-            {item.category === "مغازه" ? <FaStore /> : null}
-            {item.category === "دفتر" ? <PiOfficeChairFill /> : null}
-          </span>
+          <span className={styles.icon}>{icons[item.category]}</span>
           <p className={styles.article}> {item.article} </p>
           <div className={styles.place}>
             <span>

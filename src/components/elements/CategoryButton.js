@@ -1,4 +1,3 @@
-import React from "react";
 import { centerStyle } from "@/constants/styles";
 
 function CategoryButton({type, category, changeHandler }) {
@@ -11,7 +10,7 @@ function CategoryButton({type, category, changeHandler }) {
         name="category"
         value={type}
         checked={category === type}
-        // onChange={(e) => changeHandler(e)} equals with line 15
+        // onChange={(e) => changeHandler(e)} equals with line 14
         onChange={changeHandler}
       />
     </div>

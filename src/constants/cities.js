@@ -1,6 +1,3 @@
-const cities1 = ["تهران", "سنندج", "کرمانشاه", "اهواز"];
-const cities2 = ["مشهد", "اصفهان", "شیراز", "خرم آباد"];
-
 const cities = [
   "تهران",
   "سنندج",
@@ -12,4 +9,4 @@ const cities = [
   "خرم آباد",
 ];
 
-export { cities1, cities2, cities };
+export { cities };

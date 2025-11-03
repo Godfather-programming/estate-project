@@ -1,19 +1,14 @@
-import React from "react";
-
-import styles from "./DetailsAside.module.scss";
+import Link from "next/link";
 import { MdRealEstateAgent } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
-
 import { FaCalendarCheck } from "react-icons/fa6";
-import { icons } from "@/constants/icons";
-import SharingButton from "./SharingButton";
-import connectDB from "@/utils/connectDB";
-import Client from "@/models/Client";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/utils/authOptions";
+import toast from "react-hot-toast";
+import styles from "@/modules/DetailsAside.module.scss";
+import SharingButton from "@/elements/SharingButton";
 import PublishButton from "@/elements/PublishButton";
-import Link from "next/link";
+import connectDB from "@/utils/connectDB";
 import { e2p, sp } from "@/utils/replaceNumber";
+import { icons } from "@/constants/icons";
 
 async function DetailsAside({
   intendedProfile: {
@@ -24,16 +19,12 @@ async function DetailsAside({
     article,
     price,
     constructionDate,
+    published,
   },
 }) {
   await connectDB();
 
-  const date = new Date(constructionDate).toLocaleDateString("fa-IR")
-
-  const session = await getServerSession(authOptions);
-  console.log({ session });
-
-  const client = await Client.findOne({ email: session.user.email });
+  const date = new Date(constructionDate).toLocaleDateString("fa-IR");
 
   return (
     <div className={styles.container}>
@@ -70,11 +61,13 @@ async function DetailsAside({
         </div>
       </div>
 
-      <div className={styles.publish}>
-        <Link href="/admin">
-          <PublishButton id={_id} />
-        </Link>
-      </div>
+      {published ? null : (
+        <div className={styles.publish}>
+          <Link href="/admin">
+            <PublishButton id={_id} toast={toast} />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

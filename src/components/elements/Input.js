@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/elements/Input.module.scss";
 
 function Input({ label, type, name, value, changeHandler }) {

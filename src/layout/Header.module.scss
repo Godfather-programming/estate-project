@@ -37,11 +37,11 @@
             align-items: center;
             justify-content: center;
             gap: 3px;
-            // padding: 3px 6px;
             width: 100%;
         }
 
     }
+
     .entrance:hover {
         color: #fefefe;
         background-color: $darkBlue;
@@ -50,5 +50,13 @@
         -moz-transition: all 0.2s ease-in;
         -ms-transition: all 0.2s ease-in;
         -o-transition: all 0.2s ease-in;
+    }
 }
+
+@include mobile {
+    .header {
+        .charactristics :last-child {
+        margin-right: 5px;
+        }
+    }
 }

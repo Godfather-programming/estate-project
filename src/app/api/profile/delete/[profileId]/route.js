@@ -1,9 +1,9 @@
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 import Client from "@/models/Client";
 import Profile from "@/models/Profile";
 import connectDB from "@/utils/connectDB";
 import { validationSession } from "@/utils/session";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 
 export async function DELETE(req, context) {
   try {
@@ -22,14 +22,10 @@ export async function DELETE(req, context) {
     }
 
     const profileId = await context.params.profileId;
-    console.log({ profileId });
 
     const intendedProfile = await Profile.findOne({ _id: profileId });
 
-    // const {id, userId} = await req.json();
-    console.log({ clientId: client._id.toHexString() });
-
-    // if (userId !== client._id.toHexString()) {
+    // if (userId !== client._id.toHexString()) 
     if (!intendedProfile.userId.equals(client._id)) {
       return NextResponse.json(
         { error: "شما به این آگهی دسترسی ندارید!" },

@@ -1,16 +1,13 @@
 "use client";
 
-import React from "react";
-
 import Link from "next/link";
-import styles from "@/layout/Header.module.scss";
+import { useSession } from "next-auth/react";
 import { PiSignInBold } from "react-icons/pi";
 import { BsFillPersonCheckFill } from "react-icons/bs";
-import { useSession } from "next-auth/react";
+import styles from "@/layout/Header.module.scss";
 
 function Header() {
   const { status } = useSession();
-  console.log(status);
   return (
     <div className={styles.header}>
       <div className={styles.charactristics}>

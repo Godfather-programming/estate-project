@@ -1,19 +1,11 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-
-import styles from "@/modules/BuyResidentialAside.module.scss";
-import { LuTypeOutline } from "react-icons/lu";
-import { info } from "sass";
-import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { LuTypeOutline } from "react-icons/lu";
+import styles from "@/modules/BuyResidentialAside.module.scss";
 import { queries } from "@/constants/queries";
 
 function BuyResidentialAside() {
-
   return (
     <div className={styles.container}>
-      {/* <div> */}
       <p className={styles.category}>
         {" "}
         <span>
@@ -22,7 +14,6 @@ function BuyResidentialAside() {
         </span>
         <span> دسته بندی </span>
       </p>
-      {/* </div> */}
       <ul className={styles.types}>
         <Link href="/buy-residential">
           <li> همه </li>
@@ -39,40 +30,9 @@ function BuyResidentialAside() {
             <li> {Object.values(query)} </li>
           </Link>
         ))}
-
-        {/* <Link href="/buy-residential?category=آپارتمان">
-          {" "}
-          <li> آپارتمان </li>{" "}
-        </Link>
-        <Link href="/buy-residential?category=دفتر">
-          {" "}
-          <li> دفتر </li>{" "}
-        </Link>
-        <Link href="/buy-residential?category=مغازه">
-          {" "}
-          <li> مغازه </li>{" "}
-        </Link> */}
       </ul>
     </div>
   );
 }
 
 export default BuyResidentialAside;
-
-// const [inforamtion, setInformation] = useState(data)
-// console.log({data})
-// console.log({inforamtion})
-// const categoryHandler = (e) => {
-//   setData(inforamtion)
-//   const {tagName, innerText} = e.target
-//   if(tagName !== "LI") return
-
-//     if(innerText === "همه") {
-//       setData(inforamtion)
-
-//     } else {
-//       const newData = inforamtion.filter(item => item.category === innerText)
-//       console.log({newData})
-//       setData(newData)
-//     }
-//   }

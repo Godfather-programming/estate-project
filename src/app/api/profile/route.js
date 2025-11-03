@@ -1,17 +1,14 @@
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { Types } from "mongoose";
 import Client from "@/models/Client";
 import Profile from "@/models/Profile";
-import { authOptions } from "@/utils/authOptions";
 import connectDB from "@/utils/connectDB";
-import { e2p, sp } from "@/utils/replaceNumber";
 import { validationSession } from "@/utils/session";
-import { Types } from "mongoose";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 
 export async function POST(req) {
-
-  const session = await getServerSession(req);
   try {
+    const session = await getServerSession(req);
     validationSession();
 
     await connectDB();
@@ -27,14 +24,8 @@ export async function POST(req) {
       firm,
       category,
       constructionDate,
-      amenities,
-      rules,
-      published,
       email,
     } = data;
-
-    console.log(email);
-    console.log(email);
 
     if (
       !article ||
@@ -62,12 +53,8 @@ export async function POST(req) {
 
     const recordedProfile = await Profile.create({
       ...data,
-      // price: sp(data.price),
-      // phoneNumber: e2p(data.phoneNumber),
       userId: new Types.ObjectId(client._id),
     });
-
-    console.log(recordedProfile.userId);
 
     return NextResponse.json(
       { message: "آگهی با موفقیت ثبت شد!" },
@@ -88,8 +75,6 @@ export async function GET() {
 
     // const profiles = await Profile.find().select("-userId");
     const profiles = await Profile.find();
-
-    console.log(profiles);
 
     return NextResponse.json(
       {

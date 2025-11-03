@@ -1,25 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-import styles from "@/modules/SharingButton.module.scss";
+import { useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { PiShareNetwork } from "react-icons/pi";
-// import { usePathname } from "next/navigation";
+import styles from "@/elements/SharingButton.module.scss";
 
 function SharingButton() {
   const [url, setUrl] = useState("");
-//   const path = usePathname();
- 
-  
+  //   const path = usePathname();  look in useEffect
+
   useEffect(() => {
     // if (path) {
-    //   setUrl(`http://localhost:3000/${path}`); 
+    //   setUrl(`http://localhost:3000/${path}`);
     // } ==> also it is true
 
-    setUrl(window.location.href)
+    setUrl(window.location.href);
   }, []);
-
 
   return (
     <CopyToClipboard text={url}>

@@ -1,16 +1,10 @@
-import React from "react";
-
-import styles from "@/modules/DetailsMain.module.scss";
 import { MdOutlinePlace } from "react-icons/md";
-import Options from "./Options";
-import ItemList from "./ItemList";
+import styles from "@/modules/DetailsMain.module.scss";
+import ItemList from "@/modules/ItemList";
 
 function DetailsMain({
   intendedProfile: { article, explanations, address, amenities, rules },
 }) {
-  // const { article, explanations, address, amenities, rules } = intendedProfile;
-  console.log({ amenities });
-  console.log({ rules });
   return (
     <div className={styles.container}>
       <div className={styles.name}>

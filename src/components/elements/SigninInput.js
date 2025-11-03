@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/elements/SigninInput.module.scss";
 
 function SigninInput({ label, type, name, value, changeHandler }) {

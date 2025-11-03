@@ -1,6 +1,5 @@
 @use '../../styles' as *;
 
-
 .container {
     margin: 50px 0;
     display: grid;
@@ -34,7 +33,6 @@
     }
 
     .article {
-        // font-weight: 700;
         margin-top: 10px;
     }
 
@@ -66,17 +64,14 @@
     }
 }
 
-
-
-
 @include laptop {
     .container {
         grid-template-columns: 1fr 1fr;
-        // column-gap: 0px;
+        column-gap: 0px;
     }
 
     .wrapper {
-        width: 90%;
+        width: 250px;
     }
 }
 

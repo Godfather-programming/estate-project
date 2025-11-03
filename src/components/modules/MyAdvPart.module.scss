@@ -57,9 +57,7 @@
             margin-bottom: 7px;
         }
     }
-
 }
-
 
 .place {
     display: flex;
@@ -106,26 +104,7 @@
             margin-top: 7px;
         }
     }
-    
-    .edit {
-        // border: 2px solid #00C853;
-        // color: #00C853;
-    }
-
-    .delete {
-    //     border: 2px solid #E53935;
-    //     color: #E53935;
-
-    //     span:last-child {
-    //         margin-top: 8px;
-    //     }
-    }
 }
-
-
-
-
-
 
 .none {
     border-radius: 5px;
@@ -138,18 +117,16 @@
     padding: 10px;
 }
 
-
-
 @include tablet {
-        .none {
-            width: 60%;
-            text-align: center;
-            margin: 0 auto 0;
+    .none {
+        width: 60%;
+        text-align: center;
+        margin: 0 auto 0;
     }
 }
 
 @include mobile {
-        .none {
-            width: fit-content;
-        }
+    .none {
+        width: fit-content;
+    }
 }

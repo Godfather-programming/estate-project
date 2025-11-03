@@ -1,10 +1,8 @@
-import React from "react";
 import styles from "@/modules/ItemList.module.scss";
-import Options from "./Options";
-import Title from "./Title";
+import Options from "@/modules/Options";
+import Title from "@/modules/Title";
 
-
-function ItemList({title, data}) {
+function ItemList({ title, data }) {
   return (
     <div className={styles.amenities}>
       <Title> {title} </Title>

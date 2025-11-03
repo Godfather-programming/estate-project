@@ -1,17 +1,16 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import styles from "@/elements/PublishButton.module.scss";
 import Loader from "@/modules/Loader";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-// import toast, { Toaster } from "react-hot-toast";
 
 function PublishButton({ id, toast }) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const publishedHandler = async (e, id) => {
-    setLoading(true)
+  const publishedHandler = async (id) => {
+    setLoading(true);
     const res = await fetch(`/api/admin/${id}`, {
       method: "PATCH",
       body: JSON.stringify(id),
@@ -19,8 +18,7 @@ function PublishButton({ id, toast }) {
     });
 
     const inforamtion = await res.json();
-    console.log({ inforamtion });
-    setLoading(false)
+    setLoading(false);
     if (res.status === 200) {
       toast.success(inforamtion.message);
       router.refresh();
@@ -30,17 +28,17 @@ function PublishButton({ id, toast }) {
   };
   return (
     <>
-    {loading ? <Loader type="ادمین"/> : (    <>
-     <button
-       className={styles.publish}
-       onClick={(e) => publishedHandler(e, id)}
-     >
-       {" "}
-       انتشار{" "}
-     </button>
-     {/* <Toaster /> */}
-   </>)}
-    
+      {loading ? (
+        <Loader type="ادمین" />
+      ) : (
+          <button
+            className={styles.publish}
+            onClick={(e) => publishedHandler(e, id)}
+          >
+            {" "}
+            انتشار{" "}
+          </button>
+      )}
     </>
   );
 }

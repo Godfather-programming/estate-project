@@ -1,11 +1,7 @@
-import React from "react";
-
 import styles from "@/modules/DashbordMain.module.scss";
 
 function DashbordMain({ date }) {
-  console.log(date);
   const time = Intl.DateTimeFormat("fa").format(date);
-  // console.log(time)
   return (
     <div className={styles.container}>
       <h2> سلام👋 </h2>

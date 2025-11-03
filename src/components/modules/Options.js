@@ -1,9 +1,6 @@
-import React from "react";
+import styles from "@/modules/Options.module.scss";
 
-import styles from "@/modules/Options.module.scss"
-
-function Options({options}) {
-    console.log({options})
+function Options({ options }) {
   return (
     <div className={styles.container}>
       {options?.length ? (
@@ -15,7 +12,7 @@ function Options({options}) {
           </ul>
         </>
       ) : (
-        <p > هیچ موردی ذکر نشده است! </p>
+        <p> هیچ موردی ذکر نشده است! </p>
       )}
     </div>
   );

@@ -1,9 +1,10 @@
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 import Client from "@/models/Client";
 import Profile from "@/models/Profile";
 import connectDB from "@/utils/connectDB";
+import { authOptions } from "@/utils/authOptions";
 import { validationSession } from "@/utils/session";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 
 export async function PATCH(req, context) {
   try {
@@ -12,7 +13,7 @@ export async function PATCH(req, context) {
     const session = await getServerSession(req);
 
     const client = await Client.findOne({ email: session.user.email });
-    // if there is an error, check the session part that you get it with req
+ 
     if (!client) {
       return NextResponse.json(
         { error: "حساب کاربری یافت نشد!" },
@@ -62,38 +63,32 @@ export async function PATCH(req, context) {
   }
 }
 
-
-
 export async function GET(req, context) {
     validationSession();
     
     await connectDB()
 
-  //   const session = await getServerSession(authOptions);
-  //   console.log({session})
-  //   console.log({session})
-  //   console.log({session})
+    const session = await getServerSession(authOptions);
 
-  // const client = await Client.findOne({ email: session?.user.email });
-  // if (!client) {
-  //   return NextResponse.json(
-  //     { error: "حساب کاربری یافت نشد!" },
-  //     { status: 404 }
-  //   );
-  // }
+  const client = await Client.findOne({ email: session.user.email });
+  if (!client) {
+    return NextResponse.json(
+      { error: "حساب کاربری یافت نشد!" },
+      { status: 404 }
+    );
+  }
 
-  // if (client.role !== "ADMIN") {
-  //   return NextResponse.json(
-  //     { error: "شما مجاز به انتشار آگهی نیستید!" },
-  //     { status: 403 }
-  //   );
-  // }
+  if (client.role !== "ADMIN") {
+    return NextResponse.json(
+      { error: "شما مجاز به انتشار آگهی نیستید!" },
+      { status: 403 }
+    );
+  }
 
-const id = context.params.profileId
+const id = await context.params.profileId
 
   const intendedSeo = await Profile.find({_id: id}).select("SEO")
   const SEO = intendedSeo.map(item => item.SEO)
-  console.log({SEO})
 
-  return NextResponse.json({SEO}, {status: 200})
+  return NextResponse.json({SEO: SEO[0]}, {status: 200})
 }

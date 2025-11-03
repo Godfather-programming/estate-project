@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-
-import styles from "@/templates/SignupPage.module.scss";
-import Input from "@/elements/Input";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ColorRing } from "react-loader-spinner";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
+import styles from "@/templates/SignupPage.module.scss";
 import SigninInput from "@/elements/SigninInput";
 import Loader from "@/modules/Loader";
 
@@ -29,9 +26,6 @@ function SigninPage() {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    // const { email, password } = data;
-    // const { password } = data;
-    // console.log({ email, password });
 
     setData({ ...data, loading: true });
     const res = await signIn("credentials", {
@@ -41,9 +35,9 @@ function SigninPage() {
     });
     setData({ ...data, loading: false });
     if (res.error) {
-      toast.error(res.error)
+      toast.error(res.error);
     } else {
-      router.push("/")
+      router.push("/");
     }
   };
   return (
@@ -67,11 +61,10 @@ function SigninPage() {
         />
 
         {data.loading ? (
-           <Loader />
+          <Loader />
         ) : (
           <button onClick={loginHandler}> ورود </button>
         )}
-        {/* <button onClick={loginHandler}> ورود </button> */}
       </form>
 
       <div className={styles.situation}>

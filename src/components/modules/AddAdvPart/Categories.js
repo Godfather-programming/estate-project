@@ -1,13 +1,7 @@
-import React from "react";
-
 import styles from "@/AddAdvPart/Categories.module.scss";
 import CategoryButton from "@/elements/CategoryButton";
 
-
-function Categories({data, changeHandler}) {
-  // const icons = {
-
-  // }
+function Categories({ data, changeHandler }) {
   return (
     <div className={styles.categoryPart}>
       <p> دسته بندی </p>

@@ -1,14 +1,13 @@
-import Client from "@/models/Client";
-import { hashedPassword } from "@/utils/auth";
-import connectDB from "@/utils/connectDB";
 import { NextResponse } from "next/server";
+import Client from "@/models/Client";
+import connectDB from "@/utils/connectDB";
+import { hashedPassword } from "@/utils/auth";
 
 export async function POST(req) {
   try {
     await connectDB();
 
     const { email, password } = await req.json();
-    console.log({ email, password });
 
     if (!email || !password)
       return NextResponse.json(
@@ -26,7 +25,6 @@ export async function POST(req) {
     const hashPassword = await hashedPassword(password);
 
     const newClient = await Client.create({ email, password: hashPassword });
-    console.log(newClient);
 
     return NextResponse.json(
       { message: "حساب کاربری ایجاد شد!" },

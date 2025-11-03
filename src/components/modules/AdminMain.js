@@ -1,17 +1,11 @@
-// "use client";
-
-// import React, { useEffect, useState } from "react";
-
-import styles from "@/modules/AdminMain.module.scss";
-// import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+import styles from "@/modules/AdminMain.module.scss";
 import PublishButton from "@/elements/PublishButton";
 import DeleteButton from "@/elements/DeleteButton";
 import { sp } from "@/utils/replaceNumber";
 
 function AdminMain({ profiles }) {
-
   return (
     <div className={styles.container}>
       {profiles.map((item) => (
@@ -34,7 +28,6 @@ function AdminMain({ profiles }) {
               مشاهده جزئیات{" "}
             </Link>
 
-            {/* <button> حذف آگهی </button> */}
             <DeleteButton
               type="ادمین"
               item={JSON.parse(JSON.stringify(item))}
@@ -60,8 +53,6 @@ function AdminMain({ profiles }) {
       ) : null}
       <Toaster />
     </div>
-
-    // </>
   );
 }
 
